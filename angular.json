@@ -9,7 +9,9 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/grocery",
             "index": "apps/grocery/src/index.html",
@@ -21,7 +23,9 @@
               "apps/grocery/src/favicon.ico",
               "apps/grocery/src/assets"
             ],
-            "styles": ["apps/grocery/src/styles.scss"],
+            "styles": [
+              "apps/grocery/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -86,7 +90,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/grocery"],
+          "outputs": [
+            "coverage/apps/grocery"
+          ],
           "options": {
             "jestConfig": "apps/grocery/jest.config.js",
             "passWithNoTests": true
@@ -115,7 +121,223 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/grocery-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/grocery-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    },
+    "grocery-ionic": {
+      "projectType": "application",
+      "root": "apps/grocery-ionic",
+      "sourceRoot": "apps/grocery-ionic/src",
+      "prefix": "paulmojicatech",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/apps/grocery-ionic",
+            "index": "apps/grocery-ionic/src/index.html",
+            "main": "apps/grocery-ionic/src/main.ts",
+            "polyfills": "apps/grocery-ionic/src/polyfills.ts",
+            "tsConfig": "apps/grocery-ionic/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/grocery-ionic/src/assets",
+              {
+                "glob": "**/*.svg",
+                "input": "node_modules/ionicons/dist/ionicons/svg",
+                "output": "./svg"
+              }
+            ],
+            "styles": [
+              "apps/grocery-ionic/src/styles.scss",
+              {
+                "input": "apps/grocery-ionic/src/theme/variables.scss"
+              }
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/grocery-ionic/src/environments/environment.ts",
+                  "with": "apps/grocery-ionic/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "grocery-ionic:build:production"
+            },
+            "development": {
+              "browserTarget": "grocery-ionic:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "grocery-ionic:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/grocery-ionic/src/**/*.ts",
+              "apps/grocery-ionic/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/grocery-ionic"
+          ],
+          "options": {
+            "jestConfig": "apps/grocery-ionic/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "cap": {
+          "builder": "@nxtend/capacitor:cap",
+          "options": {
+            "cmd": "--help"
+          }
+        },
+        "add": {
+          "builder": "@nxtend/capacitor:cap",
+          "options": {
+            "cmd": "add",
+            "packageInstall": true
+          },
+          "configurations": {
+            "ios": {
+              "cmd": "add ios"
+            },
+            "android": {
+              "cmd": "add android"
+            }
+          }
+        },
+        "copy": {
+          "builder": "@nxtend/capacitor:cap",
+          "options": {
+            "cmd": "copy",
+            "packageInstall": false
+          },
+          "configurations": {
+            "ios": {
+              "cmd": "copy ios"
+            },
+            "android": {
+              "cmd": "copy android"
+            }
+          }
+        },
+        "open": {
+          "builder": "@nxtend/capacitor:cap",
+          "options": {
+            "cmd": "open",
+            "packageInstall": false
+          },
+          "configurations": {
+            "ios": {
+              "cmd": "open ios"
+            },
+            "android": {
+              "cmd": "open android"
+            }
+          }
+        },
+        "sync": {
+          "builder": "@nxtend/capacitor:cap",
+          "options": {
+            "cmd": "sync",
+            "packageInstall": true
+          },
+          "configurations": {
+            "ios": {
+              "cmd": "sync ios"
+            },
+            "android": {
+              "cmd": "sync android"
+            }
+          }
+        },
+        "update": {
+          "builder": "@nxtend/capacitor:cap",
+          "options": {
+            "cmd": "update",
+            "packageInstall": true
+          },
+          "configurations": {
+            "ios": {
+              "cmd": "update ios"
+            },
+            "android": {
+              "cmd": "update android"
+            }
+          }
+        }
+      }
+    },
+    "grocery-ionic-e2e": {
+      "root": "apps/grocery-ionic-e2e",
+      "sourceRoot": "apps/grocery-ionic-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/grocery-ionic-e2e/cypress.json",
+            "devServerTarget": "grocery-ionic:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "grocery-ionic:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/grocery-ionic-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }

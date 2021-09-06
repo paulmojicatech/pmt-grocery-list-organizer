@@ -33,6 +33,13 @@
     "grocery-e2e": {
       "tags": [],
       "implicitDependencies": ["grocery"]
+    },
+    "grocery-ionic": {
+      "tags": []
+    },
+    "grocery-ionic-e2e": {
+      "tags": [],
+      "implicitDependencies": ["grocery-ionic"]
     }
   }
 }
