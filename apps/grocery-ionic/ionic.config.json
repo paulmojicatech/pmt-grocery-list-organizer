@@ -1,0 +1,7 @@
+{
+  "name": "grocery-ionic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
