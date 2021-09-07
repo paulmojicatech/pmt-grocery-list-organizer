@@ -4,6 +4,6 @@
     "@capacitor/cli": "^2.4.5"
   },
   "dependencies": {
-    "capacitor-secure-config-storage": "0.0.15"
+    "capacitor-secure-config-storage": "0.0.16"
   }
 }

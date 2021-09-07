@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     const { SecureConfigStorage } = Plugins;
-    SecureConfigStorage.getValueFromConfig('testing').then((value: { result: string }) => {
+    SecureConfigStorage.getValueFromConfig({key: 'testing'}).then((value: { result: string }) => {
       console.log(value.result);
     })
   }
