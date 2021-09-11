@@ -1,20 +1,20 @@
+import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { Route, RouterModule } from "@angular/router";
-import { IonicModule } from "@ionic/angular";
-import { HomePage } from "./home.page";
 
 const routes: Route[] = [
     {
         path: '',
         pathMatch: 'full',
-        component: HomePage
+        loadChildren:() => import('./home/home.module').then(m => m.HomeModule)
     }
-];
+]
 
 @NgModule({
     imports: [
-        RouterModule.forChild(routes)
+        CommonModule,
+        RouterModule.forRoot(routes)
     ],
     exports: [RouterModule]
 })
-export class HomeRoutingModule{}
+export class AppRoutingModule {}

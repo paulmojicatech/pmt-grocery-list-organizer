@@ -1,19 +1,23 @@
+import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { Route, RouterModule } from "@angular/router";
-import { IonicModule } from "@ionic/angular";
-import { HomePage } from "./home.page";
+import { HomeComponent } from "./home.component";
 
 const routes: Route[] = [
     {
         path: '',
         pathMatch: 'full',
-        component: HomePage
+        component: HomeComponent
     }
 ];
 
 @NgModule({
-    imports: [
+    imports:[
+        CommonModule,
         RouterModule.forChild(routes)
+    ],
+    declarations: [
+        HomeComponent
     ],
     exports: [RouterModule]
 })
