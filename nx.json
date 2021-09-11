@@ -40,6 +40,9 @@
     "grocery-ionic-e2e": {
       "tags": [],
       "implicitDependencies": ["grocery-ionic"]
+    },
+    "grocery-shared-business-logic": {
+      "tags": []
     }
   }
 }

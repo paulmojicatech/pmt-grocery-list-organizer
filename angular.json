@@ -9,9 +9,7 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/grocery",
             "index": "apps/grocery/src/index.html",
@@ -23,9 +21,7 @@
               "apps/grocery/src/favicon.ico",
               "apps/grocery/src/assets"
             ],
-            "styles": [
-              "apps/grocery/src/styles.scss"
-            ],
+            "styles": ["apps/grocery/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -90,9 +86,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/grocery"
-          ],
+          "outputs": ["coverage/apps/grocery"],
           "options": {
             "jestConfig": "apps/grocery/jest.config.js",
             "passWithNoTests": true
@@ -121,9 +115,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/grocery-e2e/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["apps/grocery-e2e/**/*.{js,ts}"]
           }
         }
       }
@@ -136,9 +128,7 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/grocery-ionic",
             "index": "apps/grocery-ionic/src/index.html",
@@ -224,9 +214,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/grocery-ionic"
-          ],
+          "outputs": ["coverage/apps/grocery-ionic"],
           "options": {
             "jestConfig": "apps/grocery-ionic/jest.config.js",
             "passWithNoTests": true
@@ -335,8 +323,31 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
+            "lintFilePatterns": ["apps/grocery-ionic-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "grocery-shared-business-logic": {
+      "projectType": "library",
+      "root": "libs/grocery-shared-business-logic",
+      "sourceRoot": "libs/grocery-shared-business-logic/src",
+      "prefix": "paulmojicatech",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/grocery-shared-business-logic"],
+          "options": {
+            "jestConfig": "libs/grocery-shared-business-logic/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
             "lintFilePatterns": [
-              "apps/grocery-ionic-e2e/**/*.{js,ts}"
+              "libs/grocery-shared-business-logic/src/**/*.ts",
+              "libs/grocery-shared-business-logic/src/**/*.html"
             ]
           }
         }

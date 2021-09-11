@@ -15,4 +15,6 @@ Another benefit of this pattern is allowing a team to go to one place to see the
 
  - Create an NX workspace by running the command below:
  `npx create-nx-workspace --preset=angular`
+- Create a shared library by running the command below:
+`nx generate @nrwl/angular:lib` and enter the name of the library when prompted.
 
