@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { Route, RouterModule } from "@angular/router";
+import { IonicModule } from "@ionic/angular";
 import { HomePage } from "./home.page";
 
 const routes: Route[] = [

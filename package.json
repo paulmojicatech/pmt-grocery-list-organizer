@@ -7,7 +7,10 @@
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main",
     "start": "nx serve",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test",
+    "grocery-ionic-sync-ios": "nx run grocery-ionic:sync:ios",
+    "grocery-ionic-open-ios": "nx run grocery-ionic:open:ios",
+    "grocery-ionic-dev-ios": "ng build --project=grocery-ionic && npm run grocery-ionic-sync-ios && npm run grocery-ionic-open-ios"
   },
   "private": true,
   "dependencies": {
