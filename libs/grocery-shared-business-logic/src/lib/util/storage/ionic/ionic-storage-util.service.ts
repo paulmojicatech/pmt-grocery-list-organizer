@@ -5,14 +5,15 @@ import { IStorageUtilSvc } from '../storage-util.interface';
 @Injectable({
   providedIn: 'root'
 })
-export class WebStorageUtilService implements IStorageUtilSvc {
+export class IonicStorageUtilService implements IStorageUtilSvc {
 
   getStorageItem(key: string): Observable<string> {
-    return of(`${localStorage.getItem(key)}`);
+    return of(key);
   }
 
   setStorageItem(key: string, value: string): Observable<void> {
-    localStorage.setItem(key, value);
-    return EMPTY;
+      console.log(key, value);
+      return EMPTY;
   }
+  
 }
