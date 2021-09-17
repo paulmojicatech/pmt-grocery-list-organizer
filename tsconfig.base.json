@@ -14,7 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@paulmojicatech/grocery-shared-business-logic": [
+        "libs/grocery-shared-business-logic/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
