@@ -1,7 +1,7 @@
 # Creating an Ionic and Web App With an NX Monorepo
 
 ## Purpose
-The purpose of this article is to utilize NX workspace to create both a native application and a web application using the monorepo pattern.  The application will be an application that will track the grocery list items you create.  In the application, you will create a grocery list.  After creating the grocery list, you will be able to open the application either as a web application or as a native application to see when the items were purchased.  You will also be able to mark the item as used.  Finally, you will receive a notification after 3 days when you have a perishable item that has not been used yet.
+The purpose of this article is to utilize NX workspace to create both a native application and a web application using the monorepo pattern.  The application will be an application that will track the grocery list items you create.  In the application, you will create a grocery list.  After creating the grocery list, you will be able to open the application either as a web application or as a native application to see when the items were purchased.  You will also be able to mark the item as used.  Finally, you will receive a notification when you open the app if you have a perishable item that has not been yet been used and was purchased more than 3 days ago.
 
 ## What is a Monorepo
 A monorepo is the pattern of having all of your applications and libraries within one repository.  When generating the artifacts for your application, there is a build process that will compile the application and include all of the libraries that are needed in the application.
