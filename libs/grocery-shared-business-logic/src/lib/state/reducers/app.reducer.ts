@@ -4,7 +4,8 @@ import { AppState } from "../app-state.interface";
 
 const INITIAL_STATE: AppState = {
     isLoading: false,
-    expiringItems: []
+    expiringItems: [],
+    headerData: undefined
 };
 
 export const AppReducer = createReducer(

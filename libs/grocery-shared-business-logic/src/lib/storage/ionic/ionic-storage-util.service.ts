@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { EMPTY, Observable, of } from 'rxjs';
-import { IStorageUtilSvc } from '../../../util/storage/storage-util.interface';
+import { IStorageUtilSvc } from '../storage-util.interface';
 
 @Injectable({
   providedIn: 'root'
