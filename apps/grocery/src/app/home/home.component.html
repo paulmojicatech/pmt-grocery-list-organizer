@@ -1,11 +1,20 @@
 <div class="home-container">
-    <mat-toolbar color="primary">
-        <span>Current Grocery List</span>
-        <div class="icon-container">
-            <span class="material-icons-outlined icon-text">
-                add
-            </span>
-        </div>
-    </mat-toolbar>
-</div>
+    <mat-drawer-container class="drawer-container" autosize>
+        <mat-toolbar color="primary">
+            <span>Current Grocery List</span>
+            <div class="icon-container" (click)="drawer.toggle()">
+                <span class="material-icons-outlined icon-text">
+                    add
+                </span>
+            </div>
+        </mat-toolbar>
+        <div class="main-content">
 
+            <mat-drawer class="drawer-conten" mode="side" position="end" #drawer>
+                <p>Testing side</p>
+            </mat-drawer>
+        </div>
+    </mat-drawer-container>
+
+
+</div>
