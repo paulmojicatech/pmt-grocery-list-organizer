@@ -6,6 +6,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
@@ -18,6 +19,7 @@ import { HomeComponent } from './home.component';
     MatSidenavModule,
     MatInputModule,
     MatFormFieldModule,
+    MatSelectModule,
     HomeRoutingModule,
   ],
   declarations: [HomeComponent],
