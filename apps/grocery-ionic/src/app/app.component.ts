@@ -7,7 +7,7 @@ import { IonicHeaderDataService } from '../../../../libs/grocery-shared-business
 })
 export class AppComponent implements OnInit {
 
-  constructor(private _headerUtilSvc: IonicHeaderDataService){}
+  constructor(public headerUtilSvc: IonicHeaderDataService){}
 
   ngOnInit(): void {
     
