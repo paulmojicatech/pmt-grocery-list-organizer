@@ -4,3 +4,11 @@
     display: flex;
     border-top: 1px solid #e3e3e3;
 }
+
+.toggle-col {
+    display: flex;
+    align-items: center;
+    ion-label {
+        margin-left: .5rem;
+    }
+}
