@@ -1,11 +1,47 @@
 <div class="home-container">
-    <mat-toolbar color="primary">
+    <mat-toolbar class="toolbar" color="primary">
         <span>Current Grocery List</span>
-        <div class="icon-container">
+        <div class="icon-container" (click)="drawer.toggle()">
             <span class="material-icons-outlined icon-text">
                 add
             </span>
         </div>
     </mat-toolbar>
-</div>
+    <mat-drawer-container class="drawer-container" autosize>
+    
+            <mat-drawer class="drawer-content" mode="over" position="end" #drawer>
+                <div class="drawer-details">
+                    <form>
+                        <mat-form-field>
+                            <mat-label>Item Category</mat-label>
+                            <mat-select>
+                                <mat-option>Item Cat 1</mat-option>
+                                <mat-option>Item Cat 2</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Enter an item</mat-label>
+                            <mat-autocomplete #auto>
+                                <mat-option value="Item 1">Item 1</mat-option>
+                                <mat-option value="Item 2">Item 2</mat-option>
+                            </mat-autocomplete>
+                            <input matInput type="text" [matAutocomplete]="auto" />
+                        </mat-form-field>
+                        <div class="toggle-section">
+                            <mat-slide-toggle></mat-slide-toggle>
+                            <label>Add to current list</label>
+                        </div>
+                        
+                        
+                    </form>
+                    <div class="button-section">
+                        <button mat-raised-button color="primary">
+                            Add Item
+                        </button>
+                    </div>
+                </div>
+            </mat-drawer>
+       
+    </mat-drawer-container>
 
+</div>
