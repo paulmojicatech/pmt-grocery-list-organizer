@@ -1,5 +1,5 @@
-import { BehaviorSubject, from, merge, Observable, of } from "rxjs";
-import { map, startWith, tap } from "rxjs/operators";
+import { BehaviorSubject, from, merge, Observable, of, Subject } from "rxjs";
+import { map, skipUntil, startWith, tap } from "rxjs/operators";
 import { IHeaderDataService } from "../header-data/header-data-service.interface";
 import { HeaderData } from "../state/app-state.interface";
 import { AppViewModel } from "./app-state.interface";
@@ -14,7 +14,10 @@ export abstract class AppStateService {
     constructor(protected headerDataService: IHeaderDataService) {}
 
     getViewModel(defaultHeaderData: HeaderData): Observable<AppViewModel> {
-        const initialViewModel$ = of({headerData: defaultHeaderData}).pipe(
+        const initialViewModel$ = this.headerDataService.getHeaderData(defaultHeaderData).pipe(
+            map(storeHeaderData => {
+                return { headerData: storeHeaderData };
+            }),
             tap(vm => {
                 this.viewModelSub$.next(vm);
             })

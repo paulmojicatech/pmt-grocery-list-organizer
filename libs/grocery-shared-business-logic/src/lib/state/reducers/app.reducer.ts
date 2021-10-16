@@ -1,5 +1,5 @@
-import { createReducer, on } from "@ngrx/store";
-import { SetExpiringItems, SetIsLoading } from "../actions/app.actions";
+import { createReducer, on, State } from "@ngrx/store";
+import { SetExpiringItems, SetHeader, SetIsLoading } from "../actions/app.actions";
 import { AppState } from "../app-state.interface";
 
 const INITIAL_STATE: AppState = {
@@ -17,5 +17,9 @@ export const AppReducer = createReducer(
     on(
         SetExpiringItems,
         (state, { expiringItems} ) => ({...state, expiringItems})
+    ),
+    on(
+        SetHeader,
+        (state, { headerData }) => ({...state, headerData})
     )
 );
