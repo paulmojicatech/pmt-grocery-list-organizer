@@ -8,8 +8,8 @@ import { HeaderDataService } from '../header-data.service';
 @Injectable({providedIn: 'root'})
 export class IonicHeaderDataService extends HeaderDataService implements IHeaderDataService {
 
-  constructor(protected store: Store<AppState>, protected router: Router) {
-    super(store, router);
+  constructor(protected store: Store<AppState>) {
+    super(store);
   }
 
 }

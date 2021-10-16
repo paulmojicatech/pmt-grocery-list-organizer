@@ -1,9 +1,9 @@
-<div class="home-container">
+<div class="home-container" *ngIf="viewModel$ | async as viewModel">
     <mat-toolbar class="toolbar" color="primary">
-        <span>Current Grocery List</span>
-        <div class="icon-container" (click)="drawer.toggle()">
+        <span>{{viewModel.headerData?.title}}</span>
+        <div *ngFor="let button of viewModel.headerData?.buttons?.button" class="icon-container" (click)="drawer.toggle()">
             <span class="material-icons-outlined icon-text">
-                add
+                {{button.name}}
             </span>
         </div>
     </mat-toolbar>

@@ -6,11 +6,12 @@ import { RootStateModule } from '../../../../libs/grocery-shared-business-logic/
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, RootStateModule, BrowserAnimationsModule],
+  imports: [BrowserModule, AppRoutingModule, RootStateModule, BrowserAnimationsModule, MatToolbarModule],
   providers: [],
   bootstrap: [AppComponent],
 })

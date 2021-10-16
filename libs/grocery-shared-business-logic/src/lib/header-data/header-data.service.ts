@@ -7,30 +7,13 @@ import { AppState, HeaderData } from "../state/app-state.interface";
 import { IHeaderDataService } from "./header-data-service.interface";
 
 export abstract class HeaderDataService implements IHeaderDataService {
-    constructor(protected store: Store<AppState>, protected router: Router){}
+    constructor(protected store: Store<AppState>){}
 
-    getHeaderData(headerDataToDispatch: HeaderData): Observable<HeaderData | undefined> {
-        const isLoaded = new Subject<void>();
-        return this.store.select('headerData').pipe(
-            map(headerData => {
-                if (!!headerData) {
-                    isLoaded.next();
-                    isLoaded.complete();
-                    return headerData;
-                } else {
-                    this.dispatchEvent(headerDataToDispatch);
-                    return undefined;
-                }
-            }),
-            skipUntil(isLoaded)
-        ) as Observable<HeaderData | undefined>;
+    getHeaderData(): Observable<HeaderData> {
+        return this.store.select('headerData') as Observable<HeaderData>;
     }
 
-    addList(): void {
-        this.router.navigate(['add-list'])
-    }
-
-    protected dispatchEvent(headerData: HeaderData): void {
+    dispatchEvent(headerData: HeaderData): void {
         this.store.dispatch(SetHeader({headerData}));
     }
 }

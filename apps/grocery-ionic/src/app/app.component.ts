@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicHeaderDataService } from '../../../../libs/grocery-shared-business-logic/src/lib/header-data/ionic/ionic-header-data.service';
+import { Observable } from 'rxjs';
+import { IonicAppStateService } from '../../../../libs/grocery-shared-business-logic/src/lib/app-view-model/ionic/ionic-app-state.service';
+import { AppViewModel } from '../../../../libs/grocery-shared-business-logic/src/lib/app-view-model/app-state.interface';
+import { filter } from 'rxjs/operators';
 @Component({
   selector: 'paulmojicatech-root',
   templateUrl: 'app.component.html',
@@ -7,9 +10,13 @@ import { IonicHeaderDataService } from '../../../../libs/grocery-shared-business
 })
 export class AppComponent implements OnInit {
 
-  constructor(public headerUtilSvc: IonicHeaderDataService){}
+  viewModel$!: Observable<AppViewModel>;
+
+  constructor(public appStateSvc: IonicAppStateService){}
 
   ngOnInit(): void {
-    
+    this.viewModel$ = this.appStateSvc.getViewModel().pipe(
+      filter(vm => !!vm.headerData)
+    );
   }
 }

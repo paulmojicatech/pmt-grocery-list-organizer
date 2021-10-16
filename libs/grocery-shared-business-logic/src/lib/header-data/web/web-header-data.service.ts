@@ -10,4 +10,7 @@ export class WebHeaderDataService extends HeaderDataService implements IHeaderDa
   constructor(protected store: Store<AppState>) {
     super(store);
   }
+
+  
+
 }
