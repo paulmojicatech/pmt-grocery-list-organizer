@@ -1,7 +1,7 @@
 export interface AppState {
   isLoading: boolean;
   expiringItems: { title: string; datePurchased: string }[];
-  headerData: HeaderData | undefined;
+  headerData?: HeaderData;
 }
 
 export interface HeaderData {
@@ -10,9 +10,10 @@ export interface HeaderData {
     button: {
         name?: string;
         text?: string;
-    }
+    }[],
+    isBack?: boolean;
     position: HeaderButtonPosition;
-  }[]
+  }
 }
 
 export enum HeaderButtonPosition {
