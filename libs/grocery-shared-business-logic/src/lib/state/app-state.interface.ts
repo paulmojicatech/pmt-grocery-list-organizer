@@ -11,6 +11,7 @@ export interface HeaderData {
         name?: string;
         text?: string;
     }[],
+    isBack?: boolean;
     position: HeaderButtonPosition;
   }
 }

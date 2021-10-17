@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { IonicHeaderDataService } from '../../header-data/ionic/ionic-header-data.service';
-import { HeaderButtonPosition, HeaderData } from '../../state/app-state.interface';
+import { HeaderButtonPosition } from '../../state/app-state.interface';
 import { AppViewModel, IAppStateService } from '../app-state.interface';
 import { AppStateService } from '../app-state.service';
 
@@ -25,7 +24,7 @@ export class IonicAppStateService extends AppStateService implements IAppStateSe
     }
   };
 
-  constructor(protected headerDataService: IonicHeaderDataService, private _router: Router) {
+  constructor(protected headerDataService: IonicHeaderDataService) {
     super(headerDataService);
    }
 
@@ -34,17 +33,6 @@ export class IonicAppStateService extends AppStateService implements IAppStateSe
    }
 
    handleAddListClickEvent(): void {
-     this.headerDataService.dispatchEvent({
-       title: 'Add item to list',
-       buttons: {
-         button: [
-           {
-             name: 'arrow-back',
-           }
-         ],
-         position: HeaderButtonPosition.START
-       }
-     })
-     this._router.navigate(['add-list']);
+     this.headerDataService.setNextHeader();
    }
 }

@@ -12,7 +12,6 @@ export class IonicStorageUtilService implements IStorageUtilSvc {
   }
 
   setStorageItem(key: string, value: string): Observable<void> {
-      console.log(key, value);
       return EMPTY;
   }
   
