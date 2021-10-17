@@ -34,6 +34,17 @@ export class IonicAppStateService extends AppStateService implements IAppStateSe
    }
 
    handleAddListClickEvent(): void {
+     this.headerDataService.dispatchEvent({
+       title: 'Add item to list',
+       buttons: {
+         button: [
+           {
+             name: 'arrow-back',
+           }
+         ],
+         position: HeaderButtonPosition.START
+       }
+     })
      this._router.navigate(['add-list']);
    }
 }

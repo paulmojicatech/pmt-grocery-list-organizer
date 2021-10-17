@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppReducer } from '../../../../libs/grocery-shared-business-logic/src/lib/state/reducers/app.reducer';
 import { StoreModule } from '@ngrx/store';
-import { EffectsFeatureModule, EffectsModule } from '@ngrx/effects';
+import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
