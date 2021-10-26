@@ -1,18 +1,26 @@
 import { Injectable } from '@angular/core';
-import { EMPTY, Observable, of } from 'rxjs';
+
+import { EMPTY, from, Observable } from 'rxjs';
+
 import { IStorageUtilSvc } from '../storage-util.interface';
+import { Storage } from '@ionic/storage-angular';
+import { StorageType } from '../models/storage.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IonicStorageUtilService implements IStorageUtilSvc {
 
-  getStorageItem(key: string): Observable<string> {
-    return of(key);
+  constructor(private _storage: Storage){
+    this._storage.create();
   }
 
-  setStorageItem(key: string, value: string): Observable<void> {
-      return EMPTY;
+  getStorageItem(key: StorageType): Observable<string> {
+    return from(this._storage.get(key));
+  }
+
+  setStorageItem(key: StorageType, value: string): void {
+      this._storage.set(`${key}`, value);
   }
   
 }

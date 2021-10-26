@@ -1,5 +1,5 @@
 export interface AppState {
-  allItems: GroceryItem[];
+  allItems?: GroceryItem[];
   headerData?: HeaderData;
 }
 

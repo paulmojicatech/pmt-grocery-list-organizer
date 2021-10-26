@@ -1,9 +1,7 @@
-import { Observable } from "rxjs";
-import { SQLite } from '@ionic-native/sqlite/ngx/index';
-
+import { Observable } from 'rxjs';
+import { GroceryItem } from '../state/app-state.interface';
+import { StorageType } from './models/storage.interface';
 export interface IStorageUtilSvc {
-    getStorageItem: (key: string) => Observable<string>;
-    setStorageItem: (key: string, value: string) => Observable<void>;
+  getStorageItem: (key: StorageType) => Observable<string>;
+  setStorageItem: (key: StorageType, value: string) => void;
 }
-
-export type StorageAdapter = SQLite | Window;

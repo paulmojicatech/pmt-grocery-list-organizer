@@ -16,6 +16,6 @@ export const getAllItems = createSelector(
 export const getCurrentItems = createSelector(
     appState,
     state => {
-        return state.allItems.filter(item => !!(item as CurrentGroceryItem).id)
+        return state.allItems?.filter(item => !!(item as CurrentGroceryItem).id)
     }
 );

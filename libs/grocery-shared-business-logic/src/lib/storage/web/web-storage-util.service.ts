@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { EMPTY, Observable, of } from 'rxjs';
+
+import { Observable, of } from 'rxjs';
+
+import { StorageType } from '../models/storage.interface';
 import { IStorageUtilSvc } from '../storage-util.interface';
 
 @Injectable({
@@ -7,12 +10,11 @@ import { IStorageUtilSvc } from '../storage-util.interface';
 })
 export class WebStorageUtilService implements IStorageUtilSvc {
 
-  getStorageItem(key: string): Observable<string> {
+  getStorageItem(key: StorageType): Observable<string> {
     return of(`${localStorage.getItem(key)}`);
   }
 
-  setStorageItem(key: string, value: string): Observable<void> {
+  setStorageItem(key: StorageType, value: string): void {
     localStorage.setItem(key, value);
-    return EMPTY;
   }
 }
