@@ -1,6 +1,5 @@
 export interface AppState {
-  isLoading: boolean;
-  expiringItems: { title: string; datePurchased: string }[];
+  allItems?: GroceryItem[];
   headerData?: HeaderData;
 }
 
@@ -19,4 +18,22 @@ export interface HeaderData {
 export enum HeaderButtonPosition {
     START = 'start',
     END = 'end'
+}
+
+export interface GroceryItem {
+  name: string;
+  category: GroceryItemCategoryType;
+}
+
+export interface CurrentGroceryItem extends GroceryItem {
+  id: number;
+  datePurchased: string;
+}
+
+export enum GroceryItemCategoryType {
+  MEAT = 'Meat',
+  FRUIT = 'Fruit',
+  VEGETABLES = 'Vegetables',
+  SNACKS = 'Snacks',
+  DESSERTS = ' Desserts'
 }
