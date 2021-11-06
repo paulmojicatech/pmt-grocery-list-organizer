@@ -71,7 +71,8 @@ Next, we create the directories that will hold the native projects by running `n
 
 Finally, we can create an npm script that builds the Angular app, syncs it with the mobile project and opens it in the native device's IDE.
 
-`"grocery-ionic-ios": " "nx build grocery-ionic && nx run grocery-ionic:sync:ios && nx run grocery-ionic:open:ios",
-"grocery-ionic-android": "nx build grocery-ionic && nx run grocery-ionic:sync:android && nx build grocery-ionic:open:android"`.
+`"grocery-ionic-ios": "nx build grocery-ionic && nx run grocery-ionic:sync:ios && nx run grocery-ionic:open:ios",`
+
+`"grocery-ionic-android": "nx build grocery-ionic && nx run grocery-ionic:sync:android && nx build grocery-ionic:open:android"`.
 
 
