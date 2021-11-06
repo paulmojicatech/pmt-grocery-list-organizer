@@ -37,7 +37,7 @@ Microfrontend architecture is one where an application is a self contained piece
 
 - Create an NX workspace by running the command below:
 
-`npx create-nx-workspace --preset=angular`
+`npx create-nx-workspace --preset=empty`
 
 You will be prompted to enter your org name, application name, and if you want to use NX cloud.   This will create the scaffolding for our monorepo.  Let's look at some of the files and folders created.
 
@@ -51,12 +51,27 @@ This is where our shared libraries will exist.  These can be shared between all 
 
 ***One thing to note is that if a library is generated without including the flag, it cannot be retroactively added.***
 
-**angular.json**
-Since we created the monorepo with the Angular preset, the angular.json file is created that includes the 2 applications that were created in the `projects` section.    Under the `schematics` section, the `@nrwl` schematics are specified that allow us run `nx` commands.
-
-**decorate-angular-cli.js**
-This file allows NX to extend Angular's CLI to improve build performance.
-
 **nx.json**
 This is the NX workspace configuration file.  It includes generators for the CLI, references to project linting configurations, and application / library dependencies.
+
+**workspace.json**
+This file will contain the different projects in your workspace.
+
+
+## Let's Get Crackin'
+First, we want to create our Ionic app.  There is an NPM package helps us with this exact thing.  NX has a plugin ecosystem that provides packages that allow NX to be extended.  One of those packages is `@nxtend/ionic-angular`.  We can create an Ionic app by installing the package and running several commands.  As a source of documentation, I found these steps at [this link](https://ionicframework.com/blog/ionic-angular-monorepos-with-nx/).
+
+`npm install --save-dev @nxtend/ionic-angular`
+`nx generate @nxtend/ionic-angular:init`
+`nx generate @nxtend/ionic-angular:app grocery-ionic`
+
+Then we can make sure the Ionic app runs, first in the browser with the command `nx serve grocery-ionic --open`.
+
+Next, we create the directories that will hold the native projects by running `nx run grocery-ionic:add:ios` and `nx run grocery-ionic:add:android`.
+
+Finally, we can create an npm script that builds the Angular app, syncs it with the mobile project and opens it in the native device's IDE.
+
+`"grocery-ionic-ios": " "nx build grocery-ionic && nx run grocery-ionic:sync:ios && nx run grocery-ionic:open:ios",
+"grocery-ionic-android": "nx build grocery-ionic && nx run grocery-ionic:sync:android && nx build grocery-ionic:open:android"`.
+
 
