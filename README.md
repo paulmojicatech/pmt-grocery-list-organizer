@@ -61,9 +61,9 @@ This file will contain the different projects in your workspace.
 ## Let's Get Crackin'
 First, we want to create our Ionic app.  There is an NPM package helps us with this exact thing.  NX has a plugin ecosystem that provides packages that allow NX to be extended.  One of those packages is `@nxtend/ionic-angular`.  We can create an Ionic app by installing the package and running several commands.  As a source of documentation, I found these steps at [this link](https://ionicframework.com/blog/ionic-angular-monorepos-with-nx/).
 
-`npm install --save-dev @nxtend/ionic-angular`
-`nx generate @nxtend/ionic-angular:init`
-`nx generate @nxtend/ionic-angular:app grocery-ionic`
+    npm install --save-dev @nxtend/ionic-angular
+    nx generate @nxtend/ionic-angular:init
+    nx generate @nxtend/ionic-angular:app grocery-ionic
 
 Then we can make sure the Ionic app runs, first in the browser with the command `nx serve grocery-ionic --open`.
 
@@ -73,6 +73,26 @@ Finally, we can create an npm script that builds the Angular app, syncs it with 
 
     "grocery-ionic-ios": "nx build grocery-ionic && nx run grocery-ionic:sync:ios && nx run grocery-ionic:open:ios",
     "grocery-ionic-android": "nx build grocery-ionic && nx run grocery-ionic:sync:android && nx build grocery-ionic:open:android"
+
+Next let's go ahead and create our web version of the app.  There is an NX command to accomplish this:
+
+    nx generate @nrwl/angular:app grocery
+
+This creates the Angular web version of the app we are creating.  If you open the workspace.json file, you will now see 4 apps: the grocery-ionic app and the grocery app along with their corresponding e2e apps. When we run `nx serve grocery --open`, we will see the NX Angular template in the browser.
+
+## Now For the Implementation
+**TLDR;**
+We will be separating the business logic from the presentational logic in our apps.  The business logic will be in a buildable library within our monorepo.  In this library, we will be using strategy pattern to create interfaces to expose our methods that are implemented by the concrete classes we will inject into our Angular (UI) components.  The concrete classes extend an abstract class to utilize code reuse between the 2 concrete classes.
+
+First, let's create our buildable library by running the following command:
+
+    nx generate @nrwl/angular:lib grocery-shared-business-logic --buildable
+
+This creates the grocery-shared-business-logic lib in the libs directory of the monorepo.  It also updates the workspace.json file with the new project.
+
+Now, let's think about how we want to build our UI.  Our web app will contain a single route (our home route).  There will be a header, main content area, and a side panel that can be toggled based on user interaction .  The header will have the a title and an add button that toggles the side panel.  Toggling the side panel will update the title on the header.
+
+
 
 
 
