@@ -1,9 +1,11 @@
-import { BehaviorSubject, Observable } from "rxjs";
-import { HeaderData } from "../state/app-state.interface";
+import { Observable } from "rxjs";
+import { GroceryItemCategoryType, HeaderData } from "../state/app-state.interface";
 
 export type AppViewModel = {
     headerData?: HeaderData;
     isAddVisible?: boolean;
+    itemCategories?: string[];
+    
 };
 
 export interface IAppStateService {

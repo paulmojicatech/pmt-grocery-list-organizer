@@ -23,7 +23,8 @@ export class IonicAppStateService extends AppStateService implements IAppStateSe
         ],
         position: HeaderButtonPosition.END
       }
-    }
+    },
+    itemCategories: []
   };
 
   constructor(protected headerDataService: IonicHeaderDataService, protected ionicStorageSvc: IonicStorageUtilService, protected store: Store<AppState>) {

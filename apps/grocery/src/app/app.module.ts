@@ -10,9 +10,10 @@ import { StoreModule } from '@ngrx/store';
 import { AppReducer } from '../../../../libs/grocery-shared-business-logic/src/lib/state/reducers/app.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, StoreModule.forRoot({}), StoreModule.forFeature('app', AppReducer), EffectsModule.forRoot([]), StoreDevtoolsModule.instrument({}), BrowserAnimationsModule, MatToolbarModule],
+  imports: [BrowserModule, ReactiveFormsModule, AppRoutingModule, StoreModule.forRoot({}), StoreModule.forFeature('app', AppReducer), EffectsModule.forRoot([]), StoreDevtoolsModule.instrument({}), BrowserAnimationsModule, MatToolbarModule],
   providers: [],
   bootstrap: [AppComponent],
 })

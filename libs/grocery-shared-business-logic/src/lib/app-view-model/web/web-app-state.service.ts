@@ -24,7 +24,8 @@ export class WebAppStateService extends AppStateService implements IAppStateServ
           ],
           position: HeaderButtonPosition.END
       },
-    }
+    },
+    itemCategories: []
   };
 
   protected viewModelSub$ = new BehaviorSubject<AppViewModel>(this.INITIAL_STATE);
