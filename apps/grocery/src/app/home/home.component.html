@@ -7,16 +7,16 @@
             </span>
         </div>
     </mat-toolbar>
+
     <mat-drawer-container class="drawer-container" autosize>
     
             <mat-drawer class="drawer-content" mode="over" position="end" #drawer>
                 <div class="drawer-details">
-                    <form>
+                    <form [formGroup]="addItemForm">
                         <mat-form-field>
                             <mat-label>Item Category</mat-label>
-                            <mat-select>
-                                <mat-option>Item Cat 1</mat-option>
-                                <mat-option>Item Cat 2</mat-option>
+                            <mat-select formControlName="itemCategory">
+                                <mat-option [value]="itemCat" *ngFor="let itemCat of viewModel.itemCategories">{{itemCat}}</mat-option>
                             </mat-select>
                         </mat-form-field>
                         <mat-form-field>
@@ -25,17 +25,17 @@
                                 <mat-option value="Item 1">Item 1</mat-option>
                                 <mat-option value="Item 2">Item 2</mat-option>
                             </mat-autocomplete>
-                            <input matInput type="text" [matAutocomplete]="auto" />
+                            <input matInput type="text" [matAutocomplete]="auto" formControlName="item" />
                         </mat-form-field>
                         <div class="toggle-section">
-                            <mat-slide-toggle></mat-slide-toggle>
+                            <mat-slide-toggle formControlName="addToCurrentList"></mat-slide-toggle>
                             <label>Add to current list</label>
                         </div>
                         
                         
                     </form>
                     <div class="button-section">
-                        <button mat-raised-button color="primary">
+                        <button mat-raised-button color="primary" [disabled]="addItemForm.invalid">
                             Add Item
                         </button>
                     </div>

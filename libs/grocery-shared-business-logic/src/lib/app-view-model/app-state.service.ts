@@ -3,14 +3,15 @@ import { BehaviorSubject, from, merge, Observable, of, Subject } from "rxjs";
 import { ignoreElements, map, skipUntil, startWith, take, tap } from "rxjs/operators";
 import { IHeaderDataService } from "../header-data/header-data-service.interface";
 import { LoadItems } from "../state/actions/app.actions";
-import { AppState, GroceryItem, HeaderData } from "../state/app-state.interface";
+import { AppState, GroceryItem, GroceryItemCategoryType, HeaderData } from "../state/app-state.interface";
 import { StorageType } from "../storage/models/storage.interface";
 import { IStorageUtilSvc } from "../storage/storage-util.interface";
 import { AppViewModel } from "./app-state.interface";
 
 export abstract class AppStateService {
     protected INITIAL_STATE: AppViewModel = {
-        headerData: undefined
+        headerData: undefined,
+        itemCategories: []
     };
     protected viewModelSub$ = new BehaviorSubject<AppViewModel>(this.INITIAL_STATE);
     viewModel$ = this.viewModelSub$.asObservable();
@@ -29,7 +30,11 @@ export abstract class AppStateService {
         );
         const initialViewModel$ = this.headerDataService.getHeaderData(defaultHeaderData).pipe(
             map(storeHeaderData => {
-                return { headerData: storeHeaderData };
+                let itemCategories: string[] = [];
+                for (const itemCat in GroceryItemCategoryType) {
+                    itemCategories = [...itemCategories, itemCat];
+                }
+                return { headerData: storeHeaderData, itemCategories };
             }),
             tap(vm => {
                 this.viewModelSub$.next(vm);

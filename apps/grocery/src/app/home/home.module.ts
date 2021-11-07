@@ -13,10 +13,12 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     MatMenuModule,
     MatToolbarModule,
     MatSidenavModule,
