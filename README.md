@@ -90,7 +90,7 @@ First, let's create our buildable library by running the following command:
 
 This creates the grocery-shared-business-logic lib in the libs directory of the monorepo.  It also updates the workspace.json file with the new project.
 
-Now, let's think about how we want to build our UI.  Our web app will contain a single route (our home route).  There will be a header, main content area, and a side panel that can be toggled based on user interaction .  The header will have the a title and an add button that toggles the side panel.  Toggling the side panel will update the title on the header.
+Now, let's think about how we want to build our UI.  Our web app will contain a single route (our home route).  There will be a header, main content area, and a side panel that can be toggled based on user interaction .  The header will have an add button that toggles the side panel.  The main content will have a list of items where each item will be in an expandable section that can be toggled to show the item details.
 
 
 
