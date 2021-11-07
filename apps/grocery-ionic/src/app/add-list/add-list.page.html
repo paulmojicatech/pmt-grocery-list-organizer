@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content [formGroup]="addItemForm" *ngIf="viewModel$ | async as viewModel">
     <ion-grid>
         <ion-row>
             <ion-col>
@@ -7,9 +7,8 @@
         </ion-row>
         <ion-row>
             <ion-col>
-                <ion-select value="Item Category" interface="action-sheet">
-                    <ion-select-option value="Item Cat 1">Item Cat 1</ion-select-option>
-                    <ion-select-option value="Item Cate 2">Item Cat 2</ion-select-option>
+                <ion-select formControlName="itemCategory" value="Item Category" interface="action-sheet">
+                    <ion-select-option *ngFor="let itemCat of viewModel.itemCategories" [value]="itemCat">{{itemCat}}</ion-select-option>
                 </ion-select>
             </ion-col>
         </ion-row>
@@ -20,7 +19,7 @@
         </ion-row>
         <ion-row>
             <ion-col>
-                <ion-input class="item-input"></ion-input>
+                <ion-input formControlName="item" class="item-input"></ion-input>
             </ion-col>
         </ion-row>
         <ion-row>
@@ -40,7 +39,7 @@
         </ion-button>
     </ion-buttons>
     <ion-buttons slot="end">
-        <ion-button color="primary">
+        <ion-button color="primary" [disabled]="addItemForm.invalid">
             Add Item
         </ion-button>
     </ion-buttons>
