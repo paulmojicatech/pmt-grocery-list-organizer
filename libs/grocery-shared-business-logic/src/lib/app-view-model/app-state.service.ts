@@ -1,7 +1,7 @@
 import { FormGroup } from "@angular/forms";
 import { Store } from "@ngrx/store";
-import { BehaviorSubject, merge, Observable } from "rxjs";
-import { ignoreElements, map, switchMap, take, tap } from "rxjs/operators";
+import { BehaviorSubject, combineLatest, merge, Observable, of } from "rxjs";
+import { filter, ignoreElements, map, switchMap, take, tap } from "rxjs/operators";
 import { IHeaderDataService } from "../header-data/header-data-service.interface";
 import { getAllItems } from "../state";
 import { LoadItems } from "../state/actions/app.actions";
@@ -27,24 +27,24 @@ export abstract class AppStateService {
                 const parsedItems = !!unParsedItems ? JSON.parse(unParsedItems) : [];
                 return parsedItems as GroceryItem[];
             }),
-            tap(items => this._store.dispatch(LoadItems({allItems: items}))),
+            tap(items => {
+                this._store.dispatch(LoadItems({allItems: items}));
+            }),
             take(1),
             ignoreElements()
         );
-        const initialViewModel$ = this.headerDataService.getHeaderData(defaultHeaderData)!.pipe(
-            map(storeHeaderData => {
-                let itemCategories: string[] = [];
-                for (const itemCat in GroceryItemCategoryType) {
-                    itemCategories = [...itemCategories, itemCat];
-                }
-                return { headerData: (storeHeaderData as HeaderData), itemCategories };
-            }),
-            switchMap(vm => this._store.select(getAllItems).pipe(
-                map(items => ({...vm, items: (items as GroceryItem[])}))
-            )),
-            tap(vm => {
-                console.log('ITEMS', vm.items);
-                this.viewModelSub$.next(vm);
+        const headerData$ = this.headerDataService.getHeaderData(defaultHeaderData).pipe(
+            filter(headerData => !!headerData)
+        );
+        let itemCategories: string[] = [];
+        for (const itemCat in GroceryItemCategoryType) {
+            itemCategories = [...itemCategories, itemCat];
+        }
+        const itemCategories$ = of(itemCategories);
+        const allItems$ = this._store.select(getAllItems);
+        const initialViewModel$ = combineLatest([headerData$, itemCategories$, allItems$]).pipe(
+            map(([headerData, itemCategories, items]) => {
+                return {headerData, itemCategories, items};
             })
         );
         return merge(initialViewModel$, this.viewModel$, loadGroceryItems$);

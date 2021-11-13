@@ -20,9 +20,8 @@ export class HomeComponent implements OnInit {
   constructor(public webStateServce: WebAppStateService, private _formService: AddItemFormService) {}
 
   ngOnInit(): void {
-    this.viewModel$ = this.webStateServce.getViewModel().pipe(
-      filter(vm => !!vm.headerData)
-    );
+    this.viewModel$ = this.webStateServce.getViewModel();
     this.addItemForm = this._formService.getAddItemFormGroup();
   }
+
 }

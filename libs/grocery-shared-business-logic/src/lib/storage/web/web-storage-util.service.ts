@@ -22,7 +22,7 @@ export class WebStorageUtilService implements IStorageUtilSvc {
   async addGroceryItem(item: GroceryItem): Promise<void> {
     const stringifiedCurrentItems = localStorage.getItem(StorageType.GROCERY_ITEM)!;
     const currentItems: GroceryItem[] = !!stringifiedCurrentItems ? JSON.parse(stringifiedCurrentItems) : [];
-    localStorage.setItem(StorageType.GROCERY_ITEM, JSON.stringify(currentItems));
+    localStorage.setItem(StorageType.GROCERY_ITEM, JSON.stringify([...currentItems, item]));
     this._store.dispatch(LoadItems({allItems: [...currentItems, item]}));
   }
 }

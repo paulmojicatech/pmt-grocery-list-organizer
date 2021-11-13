@@ -8,6 +8,17 @@
         </div>
     </mat-toolbar>
 
+    <div class="main-container">
+        <mat-accordion>
+            <mat-expansion-panel hideToggle *ngFor="let item of viewModel.items">
+                <mat-expansion-panel-header>{{item.name}}</mat-expansion-panel-header>
+                <div class="panel-container">
+                    <p>{{item.category}}</p>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+
     <mat-drawer-container class="drawer-container" autosize>
     
             <mat-drawer class="drawer-content" mode="over" position="end" #drawer>
@@ -35,7 +46,7 @@
                         
                     </form>
                     <div class="button-section">
-                        <button mat-raised-button color="primary" [disabled]="addItemForm.invalid" (click)="webStateServce.addItemToList(addItemForm)">
+                        <button mat-raised-button color="primary" [disabled]="addItemForm.invalid" (click)="webStateServce.addItemToList(addItemForm); drawer.toggle()">
                             Add Item
                         </button>
                     </div>
