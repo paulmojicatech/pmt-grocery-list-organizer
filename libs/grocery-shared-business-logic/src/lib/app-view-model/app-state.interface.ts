@@ -1,10 +1,11 @@
 import { Observable } from "rxjs";
-import { GroceryItemCategoryType, HeaderData } from "../state/app-state.interface";
+import { GroceryItem, GroceryItemCategoryType, HeaderData } from "../state/app-state.interface";
 
 export type AppViewModel = {
     headerData?: HeaderData;
     isAddVisible?: boolean;
-    itemCategories?: string[];
+    itemCategories: string[];
+    items: GroceryItem[];
     
 };
 

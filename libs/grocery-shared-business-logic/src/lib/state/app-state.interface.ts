@@ -1,5 +1,5 @@
 export interface AppState {
-  allItems?: GroceryItem[];
+  allItems: GroceryItem[];
   headerData?: HeaderData;
 }
 
@@ -26,7 +26,7 @@ export interface GroceryItem {
 }
 
 export interface CurrentGroceryItem extends GroceryItem {
-  id: number;
+  id: string;
   datePurchased: string;
 }
 

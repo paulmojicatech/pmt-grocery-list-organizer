@@ -4,7 +4,7 @@ import { AppState, CurrentGroceryItem } from "../app-state.interface";
 
 const INITIAL_STATE: AppState = {
     headerData: undefined,
-    allItems: undefined
+    allItems: []
 };
 
 export const AppReducer = createReducer(
