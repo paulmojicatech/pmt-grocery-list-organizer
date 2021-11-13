@@ -51,7 +51,7 @@ export abstract class AppStateService {
     }
 
     addItemToList(addItemForm: FormGroup): void {
-        const addToCurrentList = !!addItemForm.get('')?.value;
+        const addToCurrentList = !!addItemForm.get('addToCurrentList')?.value;
         const item = addItemForm.get('item')?.value;
         const itemCategory = addItemForm.get('itemCategory')?.value;
         const itemToAdd = {

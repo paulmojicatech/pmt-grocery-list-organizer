@@ -15,6 +15,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CurrentItemPipe } from './pipes/current-item.pipe';
 
 @NgModule({
   imports: [
@@ -32,6 +33,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatExpansionModule,
     HomeRoutingModule,
   ],
-  declarations: [HomeComponent],
+  declarations: [HomeComponent, CurrentItemPipe],
 })
 export class HomeModule {}

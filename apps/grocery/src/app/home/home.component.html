@@ -10,7 +10,7 @@
 
     <div class="main-container">
         <mat-accordion>
-            <mat-expansion-panel hideToggle *ngFor="let item of viewModel.items">
+            <mat-expansion-panel hideToggle *ngFor="let item of viewModel.items | currentItem">
                 <mat-expansion-panel-header>{{item.name}}</mat-expansion-panel-header>
                 <div class="panel-container">
                     <p>{{item.category}}</p>
