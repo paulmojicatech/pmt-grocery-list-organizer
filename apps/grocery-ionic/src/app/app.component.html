@@ -1,17 +1,18 @@
 <ion-app>
   <ion-header *ngIf="viewModel$ | async as viewModel">
     <ion-toolbar>
-        <ion-title>{{viewModel.headerData?.title}}</ion-title>
-        <ion-buttons [slot]="viewModel.headerData?.buttons?.position">
-            <ion-button (click)="appStateSvc.handleAddListClickEvent()" *ngFor="let button of viewModel.headerData?.buttons?.button">
-                <ion-icon class="add-icon" [name]="button.name"></ion-icon>
-            </ion-button>
-        </ion-buttons>
-        
+      <ion-title>{{ viewModel.headerData?.title }}</ion-title>
+      <ion-buttons [slot]="viewModel.headerData?.buttons?.position">
+        <ion-button
+          (click)="appStateSvc.handleAddListClickEvent()"
+          *ngFor="let button of viewModel.headerData?.buttons?.button"
+        >
+          <ion-icon class="add-icon" [name]="button.name"></ion-icon>
+        </ion-button>
+      </ion-buttons>
     </ion-toolbar>
   </ion-header>
   <ion-content>
     <ion-router-outlet></ion-router-outlet>
   </ion-content>
-  
 </ion-app>

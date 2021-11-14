@@ -10,10 +10,12 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CurrentItemPipe } from './pipes/current-item.pipe';
 
 @NgModule({
   imports: [
@@ -28,8 +30,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatAutocompleteModule,
     MatButtonModule,
     MatSlideToggleModule,
+    MatExpansionModule,
     HomeRoutingModule,
   ],
-  declarations: [HomeComponent],
+  declarations: [HomeComponent, CurrentItemPipe],
 })
 export class HomeModule {}

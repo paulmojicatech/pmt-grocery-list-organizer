@@ -21,7 +21,10 @@
               "apps/grocery/src/favicon.ico",
               "apps/grocery/src/assets"
             ],
-            "styles": ["./node_modules/@angular/material/prebuilt-themes/indigo-pink.css", "apps/grocery/src/styles.scss"],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "apps/grocery/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -92,7 +95,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "grocery-e2e": {
       "root": "apps/grocery-e2e",
@@ -118,7 +122,9 @@
             "lintFilePatterns": ["apps/grocery-e2e/**/*.{js,ts}"]
           }
         }
-      }
+      },
+      "tags": [],
+      "implicitDependencies": ["grocery"]
     },
     "grocery-ionic": {
       "projectType": "application",
@@ -301,7 +307,8 @@
             }
           }
         }
-      }
+      },
+      "tags": []
     },
     "grocery-ionic-e2e": {
       "root": "apps/grocery-ionic-e2e",
@@ -326,7 +333,9 @@
             "lintFilePatterns": ["apps/grocery-ionic-e2e/**/*.{js,ts}"]
           }
         }
-      }
+      },
+      "tags": [],
+      "implicitDependencies": ["grocery-ionic"]
     },
     "grocery-shared-business-logic": {
       "projectType": "library",
@@ -351,12 +360,9 @@
             ]
           }
         }
-      }
+      },
+      "tags": []
     }
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/angular",
-    "packageManager": "npm"
   },
   "schematics": {
     "@nrwl/angular": {
@@ -384,6 +390,5 @@
     "@nrwl/angular:component": {
       "style": "scss"
     }
-  },
-  "defaultProject": "grocery"
+  }
 }

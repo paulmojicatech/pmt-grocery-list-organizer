@@ -19,9 +19,7 @@
             ]
           }
         ],
-        "@typescript-eslint/quotes": [
-          "single"
-        ]
+        "@typescript-eslint/quotes": ["single"]
       }
     },
     {

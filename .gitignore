@@ -7,6 +7,7 @@
 **/ios
 **/android
 **/www
+**/.angular
 
 # dependencies
 /node_modules
