@@ -1,46 +1,55 @@
 <ion-content [formGroup]="addItemForm" *ngIf="viewModel$ | async as viewModel">
-    <ion-grid>
-        <ion-row>
-            <ion-col>
-                <ion-label>Item Category</ion-label>
-            </ion-col>
-        </ion-row>
-        <ion-row>
-            <ion-col>
-                <ion-select formControlName="itemCategory" value="Item Category" interface="action-sheet">
-                    <ion-select-option *ngFor="let itemCat of viewModel.itemCategories" [value]="itemCat">{{itemCat}}</ion-select-option>
-                </ion-select>
-            </ion-col>
-        </ion-row>
-        <ion-row>
-            <ion-col>
-                <ion-label>Item</ion-label>
-            </ion-col>
-        </ion-row>
-        <ion-row>
-            <ion-col>
-                <ion-input formControlName="item" class="item-input"></ion-input>
-            </ion-col>
-        </ion-row>
-        <ion-row>
-            <ion-col class="toggle-col">
-                <ion-toggle></ion-toggle>
-                <ion-label>Add to current list</ion-label>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
-    
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-label>Item Category</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-select
+          formControlName="itemCategory"
+          value="Item Category"
+          interface="action-sheet"
+        >
+          <ion-select-option
+            *ngFor="let itemCat of viewModel.itemCategories"
+            [value]="itemCat"
+            >{{itemCat}}</ion-select-option
+          >
+        </ion-select>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-label>Item</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-input formControlName="item" class="item-input"></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="toggle-col">
+        <ion-toggle formControlName="addToCurrentList"></ion-toggle>
+        <ion-label>Add to current list</ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
 
 <ion-toolbar class="action-section" class="action-section">
-    <ion-buttons slot="start">
-        <ion-button>
-            Cancel
-        </ion-button>
-    </ion-buttons>
-    <ion-buttons slot="end">
-        <ion-button color="primary" [disabled]="addItemForm.invalid" (click)="appViewModelSvc.addItemToList(addItemForm); router.navigate([''])">
-            Add Item
-        </ion-button>
-    </ion-buttons>
+  <ion-buttons slot="start">
+    <ion-button> Cancel </ion-button>
+  </ion-buttons>
+  <ion-buttons slot="end">
+    <ion-button
+      color="primary"
+      [disabled]="addItemForm.invalid"
+      (click)="appViewModelSvc.addItemToList(addItemForm)"
+    >
+      Add Item
+    </ion-button>
+  </ion-buttons>
 </ion-toolbar>

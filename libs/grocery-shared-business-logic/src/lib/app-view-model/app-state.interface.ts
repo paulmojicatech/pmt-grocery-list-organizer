@@ -1,17 +1,16 @@
-import { FormGroup } from "@angular/forms";
-import { Observable } from "rxjs";
-import { GroceryItem, HeaderData } from "../state/app-state.interface";
+import { FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { GroceryItem, HeaderData } from '../state/app-state.interface';
 
 export type AppViewModel = {
-    headerData?: HeaderData;
-    isAddVisible?: boolean;
-    itemCategories: string[];
-    items: GroceryItem[];
-    
+  headerData?: HeaderData;
+  isAddVisible?: boolean;
+  itemCategories: string[];
+  items: GroceryItem[];
 };
 
 export interface IAppStateService {
-    viewModel$: Observable<AppViewModel>;
-    getViewModel: () => Observable<AppViewModel>;
-    addItemToList: (itemToAdd: FormGroup) => void;
+  viewModel$: Observable<AppViewModel>;
+  getViewModel: () => Observable<AppViewModel>;
+  addItemToList: (itemToAdd: FormGroup) => void;
 }

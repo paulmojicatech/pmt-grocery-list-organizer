@@ -7,18 +7,20 @@ import { filter } from 'rxjs/operators';
 @Component({
   selector: 'paulmojicatech-root',
   templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss']
+  styleUrls: ['app.component.scss'],
 })
 export class AppComponent implements OnInit {
-
   viewModel$!: Observable<AppViewModel>;
 
-  constructor(public appStateSvc: IonicAppStateService, private _storage: Storage){}
+  constructor(
+    public appStateSvc: IonicAppStateService,
+    private _storage: Storage
+  ) {}
 
   async ngOnInit(): Promise<void> {
     await this._storage.create();
-    this.viewModel$ = this.appStateSvc.getViewModel().pipe(
-      filter(vm => !!vm.headerData)
-    );
+    this.viewModel$ = this.appStateSvc
+      .getViewModel()
+      .pipe(filter((vm) => !!vm.headerData));
   }
 }

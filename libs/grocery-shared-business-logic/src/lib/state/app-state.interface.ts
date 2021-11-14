@@ -7,17 +7,17 @@ export interface HeaderData {
   title: string;
   buttons: {
     button: {
-        name?: string;
-        text?: string;
-    }[],
+      name?: string;
+      text?: string;
+    }[];
     isBack?: boolean;
     position: HeaderButtonPosition;
-  }
+  };
 }
 
 export enum HeaderButtonPosition {
-    START = 'start',
-    END = 'end'
+  START = 'start',
+  END = 'end',
 }
 
 export interface GroceryItem {
@@ -35,5 +35,5 @@ export enum GroceryItemCategoryType {
   FRUIT = 'Fruit',
   VEGETABLES = 'Vegetables',
   SNACKS = 'Snacks',
-  DESSERTS = ' Desserts'
+  DESSERTS = ' Desserts',
 }

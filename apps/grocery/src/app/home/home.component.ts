@@ -10,18 +10,19 @@ import { AddItemFormService } from '../../../../../libs/grocery-shared-business-
 @Component({
   selector: 'paulmojicatech-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-
   viewModel$!: Observable<AppViewModel>;
   addItemForm!: FormGroup;
 
-  constructor(public webStateServce: WebAppStateService, private _formService: AddItemFormService) {}
+  constructor(
+    public webStateServce: WebAppStateService,
+    private _formService: AddItemFormService
+  ) {}
 
   ngOnInit(): void {
     this.viewModel$ = this.webStateServce.getViewModel();
     this.addItemForm = this._formService.getAddItemFormGroup();
   }
-
 }

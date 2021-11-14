@@ -1,58 +1,76 @@
 <div class="home-container" *ngIf="viewModel$ | async as viewModel">
-    <mat-toolbar class="toolbar" color="primary">
-        <span>{{viewModel.headerData?.title}}</span>
-        <div *ngFor="let button of viewModel.headerData?.buttons?.button" class="icon-container" (click)="drawer.toggle()">
-            <span class="material-icons-outlined icon-text">
-                {{button.name}}
-            </span>
-        </div>
-    </mat-toolbar>
-
-    <div class="main-container">
-        <mat-accordion>
-            <mat-expansion-panel hideToggle *ngFor="let item of viewModel.items | currentItem">
-                <mat-expansion-panel-header>{{item.name}}</mat-expansion-panel-header>
-                <div class="panel-container">
-                    <p>{{item.category}}</p>
-                </div>
-            </mat-expansion-panel>
-        </mat-accordion>
+  <mat-toolbar class="toolbar" color="primary">
+    <span>{{ viewModel.headerData?.title }}</span>
+    <div
+      *ngFor="let button of viewModel.headerData?.buttons?.button"
+      class="icon-container"
+      (click)="drawer.toggle()"
+    >
+      <span class="material-icons-outlined icon-text">
+        {{ button.name }}
+      </span>
     </div>
+  </mat-toolbar>
 
-    <mat-drawer-container class="drawer-container" autosize>
-    
-            <mat-drawer class="drawer-content" mode="over" position="end" #drawer>
-                <div class="drawer-details">
-                    <form [formGroup]="addItemForm">
-                        <mat-form-field>
-                            <mat-label>Item Category</mat-label>
-                            <mat-select formControlName="itemCategory">
-                                <mat-option [value]="itemCat" *ngFor="let itemCat of viewModel.itemCategories">{{itemCat}}</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                        <mat-form-field>
-                            <mat-label>Enter an item</mat-label>
-                            <mat-autocomplete #auto>
-                                <mat-option value="Item 1">Item 1</mat-option>
-                                <mat-option value="Item 2">Item 2</mat-option>
-                            </mat-autocomplete>
-                            <input matInput type="text" [matAutocomplete]="auto" formControlName="item" />
-                        </mat-form-field>
-                        <div class="toggle-section">
-                            <mat-slide-toggle formControlName="addToCurrentList"></mat-slide-toggle>
-                            <label>Add to current list</label>
-                        </div>
-                        
-                        
-                    </form>
-                    <div class="button-section">
-                        <button mat-raised-button color="primary" [disabled]="addItemForm.invalid" (click)="webStateServce.addItemToList(addItemForm); drawer.toggle()">
-                            Add Item
-                        </button>
-                    </div>
-                </div>
-            </mat-drawer>
-       
-    </mat-drawer-container>
+  <div class="main-container">
+    <mat-accordion>
+      <mat-expansion-panel
+        hideToggle
+        *ngFor="let item of viewModel.items | currentItem"
+      >
+        <mat-expansion-panel-header>{{ item.name }}</mat-expansion-panel-header>
+        <div class="panel-container">
+          <p>{{ item.category }}</p>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
 
+  <mat-drawer-container class="drawer-container" autosize>
+    <mat-drawer class="drawer-content" mode="over" position="end" #drawer>
+      <div class="drawer-details">
+        <form [formGroup]="addItemForm">
+          <mat-form-field>
+            <mat-label>Item Category</mat-label>
+            <mat-select formControlName="itemCategory">
+              <mat-option
+                [value]="itemCat"
+                *ngFor="let itemCat of viewModel.itemCategories"
+                >{{ itemCat }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Enter an item</mat-label>
+            <mat-autocomplete #auto>
+              <mat-option value="Item 1">Item 1</mat-option>
+              <mat-option value="Item 2">Item 2</mat-option>
+            </mat-autocomplete>
+            <input
+              matInput
+              type="text"
+              [matAutocomplete]="auto"
+              formControlName="item"
+            />
+          </mat-form-field>
+          <div class="toggle-section">
+            <mat-slide-toggle
+              formControlName="addToCurrentList"
+            ></mat-slide-toggle>
+            <label>Add to current list</label>
+          </div>
+        </form>
+        <div class="button-section">
+          <button
+            mat-raised-button
+            color="primary"
+            [disabled]="addItemForm.invalid"
+            (click)="webStateServce.addItemToList(addItemForm); drawer.toggle()"
+          >
+            Add Item
+          </button>
+        </div>
+      </div>
+    </mat-drawer>
+  </mat-drawer-container>
 </div>
