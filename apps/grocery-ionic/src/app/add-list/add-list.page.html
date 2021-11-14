@@ -39,7 +39,7 @@
         </ion-button>
     </ion-buttons>
     <ion-buttons slot="end">
-        <ion-button color="primary" [disabled]="addItemForm.invalid">
+        <ion-button color="primary" [disabled]="addItemForm.invalid" (click)="appViewModelSvc.addItemToList(addItemForm); router.navigate([''])">
             Add Item
         </ion-button>
     </ion-buttons>

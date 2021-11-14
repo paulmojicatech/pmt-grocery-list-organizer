@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IonicHeaderDataService } from '../../header-data/ionic/ionic-header-data.service';
-import { AppState, HeaderButtonPosition } from '../../state/app-state.interface';
+import { AppState, GroceryItem, HeaderButtonPosition } from '../../state/app-state.interface';
 import { IonicStorageUtilService } from '../../storage/ionic/ionic-storage-util.service';
 import { AppViewModel, IAppStateService } from '../app-state.interface';
 import { AppStateService } from '../app-state.service';
@@ -38,5 +39,9 @@ export class IonicAppStateService extends AppStateService implements IAppStateSe
 
    handleAddListClickEvent(): void {
      this.headerDataService.setNextHeader();
+   }
+
+   addItemToList(addItemForm: FormGroup): void {
+     super.addItemToList(addItemForm);
    }
 }

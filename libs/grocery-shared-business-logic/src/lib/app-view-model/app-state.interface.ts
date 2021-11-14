@@ -1,5 +1,6 @@
+import { FormGroup } from "@angular/forms";
 import { Observable } from "rxjs";
-import { GroceryItem, GroceryItemCategoryType, HeaderData } from "../state/app-state.interface";
+import { GroceryItem, HeaderData } from "../state/app-state.interface";
 
 export type AppViewModel = {
     headerData?: HeaderData;
@@ -11,5 +12,6 @@ export type AppViewModel = {
 
 export interface IAppStateService {
     viewModel$: Observable<AppViewModel>;
-    getViewModel: () => Observable<AppViewModel>
+    getViewModel: () => Observable<AppViewModel>;
+    addItemToList: (itemToAdd: FormGroup) => void;
 }

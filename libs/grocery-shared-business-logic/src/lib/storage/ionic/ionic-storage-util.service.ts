@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 
 import { EMPTY, from, Observable } from 'rxjs';
 
@@ -12,10 +12,14 @@ import { LoadItems } from '../../state/actions/app.actions';
 @Injectable({
   providedIn: 'root'
 })
-export class IonicStorageUtilService implements IStorageUtilSvc {
+export class IonicStorageUtilService implements OnInit, IStorageUtilSvc {
 
   constructor(private _storage: Storage, private _store: Store<AppState>){
     this._storage.create();
+  }
+
+  async ngOnInit(): Promise<void> {
+
   }
 
   getStorageItem(key: StorageType): Observable<string> {
@@ -24,7 +28,7 @@ export class IonicStorageUtilService implements IStorageUtilSvc {
 
   async addGroceryItem(value: GroceryItem): Promise<void> {
       const stringifiedItem = JSON.stringify(value);
-      const stringifiedCurrentItems = await this._storage.get(StorageType.GROCERY_ITEM);
+      const stringifiedCurrentItems = await this._storage.getItem(StorageType.GROCERY_ITEM) ?? [];
       this._storage.set(StorageType.GROCERY_ITEM, [...stringifiedCurrentItems, ...stringifiedItem]);
       const currenItems: GroceryItem[] = JSON.parse(stringifiedCurrentItems);
       this._store.dispatch(LoadItems({allItems: [...currenItems, value]}));
