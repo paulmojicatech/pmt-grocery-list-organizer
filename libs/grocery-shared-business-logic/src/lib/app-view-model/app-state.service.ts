@@ -79,7 +79,7 @@ export abstract class AppStateService {
     this.storageSvc.addGroceryItem(itemToAdd);
   }
 
-  generateItemId(): string {
+  private generateItemId(): string {
     return Math.random().toString(16).substr(2, 16);
   }
 }
