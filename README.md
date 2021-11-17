@@ -98,7 +98,7 @@ Now, let's think about how we want to build our UI.  Our web app will contain a 
 For our native app, we will have a header with the page title and buttons to either add or go back based on the page we are on.  Clicking on the add button will go to a screen where we can add items.  The content for the home screen will be a list of items where clicking on an item will go to the item detail screen.
 
 **iOS Version:**
-<iframe src="https://giphy.com/embed/niU1WjzXIFRaTxCjdb" width="232" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/niU1WjzXIFRaTxCjdb">via GIPHY</a></p>
+<iframe src="https://giphy.com/embed/niU1WjzXIFRaTxCjdb" width="232" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 
 
 
