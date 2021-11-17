@@ -5,7 +5,7 @@ import {
   LoadItems,
   SetHeader,
 } from '../actions/app.actions';
-import { AppState, CurrentGroceryItem } from '../app-state.interface';
+import { AppState } from '../app-state.interface';
 
 const INITIAL_STATE: AppState = {
   headerData: undefined,
@@ -21,23 +21,13 @@ export const AppReducer = createReducer(
   }),
   on(AddItemToCurrentList, (state, { itemToAdd }) => {
     const itemIndex = state.allItems?.findIndex(
-      (item) => (item as CurrentGroceryItem)?.id === itemToAdd.id
+      (item) => item?.id === itemToAdd.id
     );
     if (itemIndex === -1) {
       const sortedItems =
-        state.allItems ??
-        []
-          .filter((item) => !!(item as CurrentGroceryItem).id)
-          .sort((previousItem, nextItem) => {
-            if (
-              (previousItem as CurrentGroceryItem).id >
-              (nextItem as CurrentGroceryItem).id
-            ) {
-              return -1;
-            }
-            return 1;
-          });
-      const newId = (sortedItems as CurrentGroceryItem[])[0].id;
+        state.allItems
+          .filter((item) => !!item?.id)
+      const newId = sortedItems[0].id;
       const itemWithId = { ...itemToAdd, id: newId };
       return {
         ...state,

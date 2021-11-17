@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { AppState, CurrentGroceryItem } from './app-state.interface';
+import { AppState } from './app-state.interface';
 
 const appState = createFeatureSelector<AppState>('app');
 
@@ -11,5 +11,5 @@ export const getHeaderData = createSelector(
 export const getAllItems = createSelector(appState, (state) => state.allItems);
 
 export const getCurrentItems = createSelector(appState, (state) => {
-  return state.allItems?.filter((item) => !!(item as CurrentGroceryItem).id);
+  return state.allItems?.filter((item) => !!item?.id);
 });

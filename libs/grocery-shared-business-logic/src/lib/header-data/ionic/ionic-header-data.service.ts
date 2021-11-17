@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { map, take } from 'rxjs/operators';
+import { filter, map, take } from 'rxjs/operators';
 import { getHeaderData } from '../../state';
 import {
   AppState,
+  GroceryItem,
   HeaderButtonPosition,
+  HeaderData,
 } from '../../state/app-state.interface';
 import { IHeaderDataService } from '../header-data-service.interface';
 import { HeaderDataService } from '../header-data.service';
 import { NavController } from '@ionic/angular';
+import { SetHeader } from '../../state/actions/app.actions';
 
 @Injectable({ providedIn: 'root' })
 export class IonicHeaderDataService
@@ -80,4 +83,22 @@ export class IonicHeaderDataService
         }
       });
   }
+
+  setItemDetailHeader(item: GroceryItem): void {
+    const headerData: HeaderData = {
+      title: `${item.name}`,
+      buttons: {
+        button: [
+          {
+            name: 'arrow-back'
+          }
+        ],
+        isBack: true,
+        position: HeaderButtonPosition.START
+      }
+    };
+    
+    this.store.dispatch(SetHeader({headerData}));
+  }
+
 }

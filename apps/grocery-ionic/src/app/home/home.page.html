@@ -1,1 +1,7 @@
-<ion-content> </ion-content>
+<ion-content *ngIf="viewModel$ | async as viewModel">
+    <ion-list>
+        <ion-item [routerLink]="'item-detail/' + item.id" detail (click)="stateSvc.handleItemDetailClickEvent(item)" *ngFor="let item of viewModel.items">
+            {{item.name}}
+        </ion-item>
+    </ion-list>
+</ion-content>

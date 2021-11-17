@@ -4,7 +4,6 @@ import { GroceryItem, HeaderData } from '../state/app-state.interface';
 
 export type AppViewModel = {
   headerData?: HeaderData;
-  isAddVisible?: boolean;
   itemCategories: string[];
   items: GroceryItem[];
 };

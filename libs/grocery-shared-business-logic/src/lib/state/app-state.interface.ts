@@ -21,14 +21,12 @@ export enum HeaderButtonPosition {
 }
 
 export interface GroceryItem {
+  id?: string;
+  datePurchased?: string;
   name: string;
   category: GroceryItemCategoryType;
 }
 
-export interface CurrentGroceryItem extends GroceryItem {
-  id: string;
-  datePurchased: string;
-}
 
 export enum GroceryItemCategoryType {
   MEAT = 'Meat',

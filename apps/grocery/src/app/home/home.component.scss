@@ -49,3 +49,19 @@ mat-toolbar {
 .icon-container:hover {
   cursor: pointer;
 }
+
+.panel-container {
+  display: grid;
+  .detail-container {
+    grid-row: 1;
+    .label {
+      margin-right: .5rem;
+      font-weight: 600;
+      grid-column: 1 / 2;
+    }
+    .description {
+      grid-column: 2 / 2;
+    }
+  }
+  
+}
