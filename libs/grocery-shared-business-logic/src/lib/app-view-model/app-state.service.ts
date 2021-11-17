@@ -5,7 +5,6 @@ import {
   filter,
   ignoreElements,
   map,
-  switchMap,
   take,
   tap,
 } from 'rxjs/operators';
@@ -14,7 +13,6 @@ import { getAllItems } from '../state';
 import { LoadItems } from '../state/actions/app.actions';
 import {
   AppState,
-  CurrentGroceryItem,
   GroceryItem,
   GroceryItemCategoryType,
   HeaderData,
@@ -53,10 +51,7 @@ export abstract class AppStateService {
     const headerData$ = this.headerDataService
       .getHeaderData(defaultHeaderData)
       .pipe(filter((headerData) => !!headerData));
-    let itemCategories: string[] = [];
-    for (const itemCat in GroceryItemCategoryType) {
-      itemCategories = [...itemCategories, itemCat];
-    }
+    let itemCategories: string[] = Object.values(GroceryItemCategoryType);
     const itemCategories$ = of(itemCategories);
     const allItems$ = this._store.select(getAllItems);
     const initialViewModel$ = combineLatest([
@@ -75,11 +70,11 @@ export abstract class AppStateService {
     const addToCurrentList = !!addItemForm.get('addToCurrentList')?.value;
     const item = addItemForm.get('item')?.value;
     const itemCategory = addItemForm.get('itemCategory')?.value;
-    const itemToAdd = {
-      id: addToCurrentList ? this.generateItemId() : null,
+    const itemToAdd: GroceryItem = {
+      id: addToCurrentList ? this.generateItemId() : undefined,
       name: item,
       category: itemCategory,
-      datePurchased: addToCurrentList ? new Date().toDateString() : null,
+      datePurchased: addToCurrentList ? new Date().toDateString() : undefined,
     };
     this.storageSvc.addGroceryItem(itemToAdd);
   }

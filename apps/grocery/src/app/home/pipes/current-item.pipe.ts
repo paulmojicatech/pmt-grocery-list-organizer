@@ -1,6 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import {
-  CurrentGroceryItem,
   GroceryItem,
 } from 'libs/grocery-shared-business-logic/src/lib/state/app-state.interface';
 
@@ -10,10 +9,10 @@ import {
 })
 export class CurrentItemPipe implements PipeTransform {
   transform(
-    allItems: GroceryItem[] | CurrentGroceryItem[]
-  ): CurrentGroceryItem[] {
+    allItems: GroceryItem[]
+  ): GroceryItem[] {
     return allItems.filter(
-      (item) => !!(item as CurrentGroceryItem).id
-    ) as CurrentGroceryItem[];
+      (item) => !!item?.id
+    );
   }
 }

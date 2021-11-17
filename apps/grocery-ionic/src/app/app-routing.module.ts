@@ -8,6 +8,10 @@ const routes: Routes = [
       import('./add-list/add-list.module').then((m) => m.IonicAddListModule),
   },
   {
+    path: 'item-detail',
+    loadChildren: () => import('./item-detail/item-detail.module').then(m => m.ItemDetailModule)
+  },
+  {
     path: '',
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
   },

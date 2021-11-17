@@ -1,0 +1,6 @@
+<div *ngIf="item$ | async as item" class="detail-container">
+    <div class="label">Category</div>
+    <div class="description">{{item.category}}</div>
+    <div class="label">Date Purchased</div>
+    <div class="description">{{item.datePurchased | date: 'fullDate'}}</div>
+</div>

@@ -20,7 +20,14 @@
       >
         <mat-expansion-panel-header>{{ item.name }}</mat-expansion-panel-header>
         <div class="panel-container">
-          <p>{{ item.category }}</p>
+          <div class="detail-container">
+            <span class="label">Category:</span>
+            <span class="description">{{item.category}}</span>
+          </div>
+          <div class="detail-container">
+            <span class="label">Date Purchased:</span>
+            <span class="description">{{item.datePurchased | date:'fullDate'}}</span>
+          </div>
         </div>
       </mat-expansion-panel>
     </mat-accordion>
@@ -43,8 +50,7 @@
           <mat-form-field>
             <mat-label>Enter an item</mat-label>
             <mat-autocomplete #auto>
-              <mat-option value="Item 1">Item 1</mat-option>
-              <mat-option value="Item 2">Item 2</mat-option>
+              <mat-option *ngFor="let item of viewModel.items" [value]="item.name">{{item.name}}</mat-option>
             </mat-autocomplete>
             <input
               matInput
@@ -65,7 +71,7 @@
             mat-raised-button
             color="primary"
             [disabled]="addItemForm.invalid"
-            (click)="webStateServce.addItemToList(addItemForm); drawer.toggle()"
+            (click)="webStateServce.addItemToList(addItemForm); drawer.toggle(); addItemForm.reset()"
           >
             Add Item
           </button>

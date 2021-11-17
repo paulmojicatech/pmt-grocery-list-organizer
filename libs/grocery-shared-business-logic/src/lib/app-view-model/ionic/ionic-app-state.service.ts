@@ -54,6 +54,10 @@ export class IonicAppStateService
     this.headerDataService.setNextHeader();
   }
 
+  handleItemDetailClickEvent(item: GroceryItem): void {
+    this.headerDataService.setItemDetailHeader(item);
+  }
+
   addItemToList(addItemForm: FormGroup): void {
     super.addItemToList(addItemForm);
     this._store.dispatch(SetHeader({headerData: this.INITIAL_STATE.headerData!}));
