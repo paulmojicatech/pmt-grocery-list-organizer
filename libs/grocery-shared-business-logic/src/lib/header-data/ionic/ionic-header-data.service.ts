@@ -20,14 +20,13 @@ export class IonicHeaderDataService
   implements IHeaderDataService
 {
   constructor(
-    protected store: Store<AppState>,
-    private _router: Router,
-    private _navController: NavController
+    protected store: Store<AppState>
   ) {
     super(store);
   }
 
-  setNextHeader(): void {
+  setNextHeader(headerData: HeaderData): void {
+    this.store.dispatch(SetHeader({headerData}));
   }
 
   setItemDetailHeader(item: GroceryItem): void {

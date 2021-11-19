@@ -4,7 +4,7 @@
       <ion-title>{{ viewModel.headerData?.title }}</ion-title>
       <ion-buttons [slot]="viewModel.headerData?.buttonGroupPosition">
         <ion-button
-          (click)="appStateSvc.handleAddListClickEvent()"
+          (click)="appStateSvc.handleAddListClickEvent(button)"
           *ngFor="let button of viewModel.headerData?.buttons"
         >
           <ion-icon class="add-icon" [name]="button.name"></ion-icon>

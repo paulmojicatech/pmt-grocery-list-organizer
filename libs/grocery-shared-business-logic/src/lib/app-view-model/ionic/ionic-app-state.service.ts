@@ -3,13 +3,16 @@ import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { homeHeaderData } from '../../header-data/header-data-actions/header-data-actions';
+import { addItemHeaderData, homeHeaderData, itemDetailHeaderData } from '../../header-data/header-data-actions/header-data-actions';
 import { IonicHeaderDataService } from '../../header-data/ionic/ionic-header-data.service';
 import { SetHeader } from '../../state/actions/app.actions';
 import {
   AppState,
   GroceryItem,
+  HeaderButton,
   HeaderButtonPosition,
+  HeaderData,
+  HeaderType,
 } from '../../state/app-state.interface';
 import { IonicStorageUtilService } from '../../storage/ionic/ionic-storage-util.service';
 import { AppViewModel, IAppStateService } from '../app-state.interface';
@@ -41,12 +44,27 @@ export class IonicAppStateService
     return super.getViewModel(this.INITIAL_STATE.headerData!);
   }
 
-  handleAddListClickEvent(): void {
-    this.headerDataService.setNextHeader();
+  handleAddListClickEvent(button: HeaderButton): void {
+    switch (button.nextHeaderData) {
+      case HeaderType.HOME_HEADER:
+        this.headerDataService.setNextHeader(homeHeaderData);
+        break;
+      case HeaderType.ADD_ITEM_HEADER:
+        this.headerDataService.setNextHeader(addItemHeaderData);
+        break;
+      case HeaderType.ITEM_DETAIL_HEADER:
+        this.headerDataService.setNextHeader(itemDetailHeaderData);
+        break;
+      default:
+        break;
+    }
+    this._router.navigate(button.route);
+    
   }
 
   handleItemDetailClickEvent(item: GroceryItem): void {
-    this.headerDataService.setItemDetailHeader(item);
+    const updatedHeader = {...itemDetailHeaderData, title: item.name };
+    this.headerDataService.setNextHeader(updatedHeader);
   }
 
   addItemToList(addItemForm: FormGroup): void {
