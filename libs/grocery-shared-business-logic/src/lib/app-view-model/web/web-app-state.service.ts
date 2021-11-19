@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { homeHeaderData } from '../../header-data/header-data-actions/header-data-actions';
 import { WebHeaderDataService } from '../../header-data/web/web-header-data.service';
 import {
   AppState,
@@ -19,18 +20,7 @@ export class WebAppStateService
   implements IAppStateService
 {
   readonly INITIAL_STATE: AppViewModel = {
-    headerData: {
-      title: 'Current Grocery Items',
-      buttons: {
-        button: [
-          {
-            text: 'Add to list',
-            name: 'add',
-          },
-        ],
-        position: HeaderButtonPosition.END,
-      },
-    },
+    headerData: homeHeaderData,
     itemCategories: [],
     items: [],
   };

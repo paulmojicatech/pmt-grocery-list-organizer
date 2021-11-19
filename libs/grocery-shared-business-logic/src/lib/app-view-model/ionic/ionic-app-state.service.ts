@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { homeHeaderData } from '../../header-data/header-data-actions/header-data-actions';
 import { IonicHeaderDataService } from '../../header-data/ionic/ionic-header-data.service';
 import { SetHeader } from '../../state/actions/app.actions';
 import {
@@ -22,17 +23,7 @@ export class IonicAppStateService
   implements IAppStateService
 {
   readonly INITIAL_STATE: AppViewModel = {
-    headerData: {
-      title: 'Current Grocery Items',
-      buttons: {
-        button: [
-          {
-            name: 'add-circle-outline',
-          },
-        ],
-        position: HeaderButtonPosition.END,
-      },
-    },
+    headerData: homeHeaderData,
     itemCategories: [],
     items: [],
   };

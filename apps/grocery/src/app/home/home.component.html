@@ -2,7 +2,7 @@
   <mat-toolbar class="toolbar" color="primary">
     <span>{{ viewModel.headerData?.title }}</span>
     <div
-      *ngFor="let button of viewModel.headerData?.buttons?.button"
+      *ngFor="let button of viewModel.headerData?.buttons"
       class="icon-container"
       (click)="drawer.toggle()"
     >

@@ -6,13 +6,11 @@ export interface AppState {
 export interface HeaderData {
   title: string;
   buttons: {
-    button: {
-      name?: string;
-      text?: string;
-    }[];
-    isBack?: boolean;
-    position: HeaderButtonPosition;
-  };
+    name?: string;
+    text?: string;
+    route: string[]
+  }[];
+  buttonGroupPosition: HeaderButtonPosition;
 }
 
 export enum HeaderButtonPosition {
