@@ -3,16 +3,23 @@ export interface AppState {
   headerData?: HeaderData;
 }
 
+export enum HeaderType {
+  HOME_HEADER,
+  ADD_ITEM_HEADER,
+  ITEM_DETAIL_HEADER
+}
+
 export interface HeaderData {
   title: string;
-  buttons: {
-    button: {
-      name?: string;
-      text?: string;
-    }[];
-    isBack?: boolean;
-    position: HeaderButtonPosition;
-  };
+  buttons: HeaderButton[];
+  buttonGroupPosition: HeaderButtonPosition;
+}
+
+export interface HeaderButton {
+  name?: string;
+  text?: string;
+  route: string[];
+  nextHeaderData: HeaderType;
 }
 
 export enum HeaderButtonPosition {
