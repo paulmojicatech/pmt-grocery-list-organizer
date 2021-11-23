@@ -362,6 +362,32 @@
         }
       },
       "tags": []
+    },
+    "grocery-shared-components": {
+      "projectType": "library",
+      "root": "libs/grocery-shared-components",
+      "sourceRoot": "libs/grocery-shared-components/src",
+      "prefix": "paulmojicatech",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/grocery-shared-components"],
+          "options": {
+            "jestConfig": "libs/grocery-shared-components/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/grocery-shared-components/src/**/*.ts",
+              "libs/grocery-shared-components/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
     }
   }
 }

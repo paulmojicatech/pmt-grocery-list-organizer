@@ -5,7 +5,7 @@ export const homeHeaderData: HeaderData = {
     title: 'Current Grocery Items',
     buttons: [
         {
-            name: 'add-circle-outline',
+            name: 'add',
             route: ['add-list'],
             nextHeaderData: HeaderType.ADD_ITEM_HEADER
         }

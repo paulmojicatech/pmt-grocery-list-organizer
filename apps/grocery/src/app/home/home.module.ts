@@ -12,10 +12,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatExpansionModule } from '@angular/material/expansion';
 
+import { GrocerySharedComponentsModule } from 'libs/grocery-shared-components/src/index';
+
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CurrentItemPipe } from './pipes/current-item.pipe';
 
 @NgModule({
   imports: [
@@ -31,8 +32,9 @@ import { CurrentItemPipe } from './pipes/current-item.pipe';
     MatButtonModule,
     MatSlideToggleModule,
     MatExpansionModule,
+    GrocerySharedComponentsModule,
     HomeRoutingModule,
   ],
-  declarations: [HomeComponent, CurrentItemPipe],
+  declarations: [HomeComponent],
 })
 export class HomeModule {}
