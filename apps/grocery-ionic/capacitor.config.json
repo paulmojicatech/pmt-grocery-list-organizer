@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "grocery-ionic",
+  "appId": "com.paulmojicatech.grocery-list",
+  "appName": "Grocery List Organizer",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "../../dist/apps/grocery-ionic",
