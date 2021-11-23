@@ -29,8 +29,5 @@ export class IonicHeaderDataService
     this.store.dispatch(SetHeader({headerData}));
   }
 
-  setItemDetailHeader(item: GroceryItem): void {
-    
-  }
 
 }

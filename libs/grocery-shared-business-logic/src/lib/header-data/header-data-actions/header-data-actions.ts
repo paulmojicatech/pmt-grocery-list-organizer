@@ -19,6 +19,7 @@ export const addItemHeaderData: HeaderData = {
         {
             name: 'arrow-back',
             route: [''],
+            isBack: true,
             nextHeaderData: HeaderType.HOME_HEADER
         }
     ],
@@ -32,6 +33,7 @@ export const itemDetailHeaderData: HeaderData = {
             text: '',
             name: 'arrow-back',
             route: [''],
+            isBack: true,
             nextHeaderData: HeaderType.HOME_HEADER
         }
     ],

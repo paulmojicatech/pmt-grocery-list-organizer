@@ -10,6 +10,7 @@ export const ADD_ITEM_TO_CURRENT_LIST = '[APP] Add Item to Current List';
 export const LOAD_ITEMS = '[APP] Load All Items to Store';
 export const OPEN_ITEM_DETAIL = '[APP] Open Item Detail';
 export const GO_BACK_TO_HOME = '[APP] Go Back to Home';
+export const OPEN_ADD_ITEM_LIST = '[APP] Open Add Item List';
 
 export const SetHeader = createAction(
   SET_HEADER,
@@ -36,4 +37,9 @@ export const OpenItemDetail = createAction(
 export const GoBackToHome = createAction(
   GO_BACK_TO_HOME,
   props<{headerData: HeaderData }>()
+);
+
+export const OpenAddItemList = createAction(
+  OPEN_ADD_ITEM_LIST,
+  props<{headerData: HeaderData}>()
 );

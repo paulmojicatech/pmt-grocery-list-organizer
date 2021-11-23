@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 @Component({
   styleUrls: ['./home.page.scss'],
-  templateUrl: './home.page.html',
+  templateUrl: './home.page.html'
 })
 export class HomePage implements OnInit {
   viewModel$!: Observable<AppViewModel>;

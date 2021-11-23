@@ -18,6 +18,7 @@ export interface HeaderData {
 export interface HeaderButton {
   name?: string;
   text?: string;
+  isBack?: boolean;
   route: string[];
   nextHeaderData: HeaderType;
 }
