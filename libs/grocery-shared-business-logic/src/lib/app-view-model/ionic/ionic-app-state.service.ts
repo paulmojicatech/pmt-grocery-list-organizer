@@ -68,7 +68,6 @@ export class IonicAppStateService
   addItemToList(addItemForm: FormGroup): void {
     super.addItemToList(addItemForm);
     this._store.dispatch(SetHeader({headerData: this.INITIAL_STATE.headerData!}));
-    // this._router.navigate(['']);
 
   }
 }

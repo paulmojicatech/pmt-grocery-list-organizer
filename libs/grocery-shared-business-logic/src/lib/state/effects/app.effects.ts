@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import { Router } from "@angular/router";
 import { NavController } from "@ionic/angular";
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, tap } from "rxjs/operators";
