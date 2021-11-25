@@ -17,6 +17,9 @@
     "paths": {
       "@paulmojicatech/grocery-shared-business-logic": [
         "libs/grocery-shared-business-logic/src/index.ts"
+      ],
+      "@paulmojicatech/grocery-shared-components": [
+        "libs/grocery-shared-components/src/index.ts"
       ]
     }
   },

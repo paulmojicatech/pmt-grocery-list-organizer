@@ -1,6 +1,6 @@
 import { Store } from '@ngrx/store';
-import { Observable, Subject } from 'rxjs';
-import { map, skipUntil } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { SetHeader } from '../state/actions/app.actions';
 import { AppState, HeaderData } from '../state/app-state.interface';
 import { IHeaderDataService } from './header-data-service.interface';

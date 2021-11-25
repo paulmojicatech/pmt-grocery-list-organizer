@@ -5,7 +5,7 @@ export const homeHeaderData: HeaderData = {
     title: 'Current Grocery Items',
     buttons: [
         {
-            name: 'add-circle-outline',
+            name: 'add',
             route: ['add-list'],
             nextHeaderData: HeaderType.ADD_ITEM_HEADER
         }
@@ -19,6 +19,7 @@ export const addItemHeaderData: HeaderData = {
         {
             name: 'arrow-back',
             route: [''],
+            isBack: true,
             nextHeaderData: HeaderType.HOME_HEADER
         }
     ],
@@ -32,6 +33,7 @@ export const itemDetailHeaderData: HeaderData = {
             text: '',
             name: 'arrow-back',
             route: [''],
+            isBack: true,
             nextHeaderData: HeaderType.HOME_HEADER
         }
     ],

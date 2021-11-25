@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { addItemHeaderData, homeHeaderData, itemDetailHeaderData } from '../../header-data/header-data-actions/header-data-actions';
 import { IonicHeaderDataService } from '../../header-data/ionic/ionic-header-data.service';
-import { SetHeader } from '../../state/actions/app.actions';
+import { GoBackToHome, OpenAddItemList, OpenItemDetail, SetHeader } from '../../state/actions/app.actions';
 import {
   AppState,
   GroceryItem,
@@ -35,7 +36,8 @@ export class IonicAppStateService
     protected headerDataService: IonicHeaderDataService,
     protected ionicStorageSvc: IonicStorageUtilService,
     protected store: Store<AppState>,
-    private _router: Router
+    private _router: Router,
+    private _navCtrl: NavController
   ) {
     super(headerDataService, ionicStorageSvc, store);
   }
@@ -47,30 +49,25 @@ export class IonicAppStateService
   handleAddListClickEvent(button: HeaderButton): void {
     switch (button.nextHeaderData) {
       case HeaderType.HOME_HEADER:
-        this.headerDataService.setNextHeader(homeHeaderData);
+        this._store.dispatch(GoBackToHome({headerData: homeHeaderData}))
         break;
       case HeaderType.ADD_ITEM_HEADER:
-        this.headerDataService.setNextHeader(addItemHeaderData);
-        break;
-      case HeaderType.ITEM_DETAIL_HEADER:
-        this.headerDataService.setNextHeader(itemDetailHeaderData);
+        this._store.dispatch(OpenAddItemList({headerData: addItemHeaderData}))
         break;
       default:
         break;
     }
-    this._router.navigate(button.route);
     
   }
 
   handleItemDetailClickEvent(item: GroceryItem): void {
-    const updatedHeader = {...itemDetailHeaderData, title: item.name };
-    this.headerDataService.setNextHeader(updatedHeader);
+    const headerData = {...itemDetailHeaderData, title: item.name };
+    this._store.dispatch(OpenItemDetail({headerData, item}));
   }
 
   addItemToList(addItemForm: FormGroup): void {
     super.addItemToList(addItemForm);
     this._store.dispatch(SetHeader({headerData: this.INITIAL_STATE.headerData!}));
-    this._router.navigate(['']);
 
   }
 }

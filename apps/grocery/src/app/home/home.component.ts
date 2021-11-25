@@ -1,8 +1,6 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MatDrawer } from '@angular/material/sidenav';
-import { Observable, Subject } from 'rxjs';
-import { filter, takeUntil, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { AppViewModel } from '../../../../../libs/grocery-shared-business-logic/src/lib/app-view-model/app-state.interface';
 import { WebAppStateService } from '../../../../../libs/grocery-shared-business-logic/src/lib/app-view-model/web/web-app-state.service';
 import { AddItemFormService } from '../../../../../libs/grocery-shared-business-logic/src/lib/items/add-item-form.service';

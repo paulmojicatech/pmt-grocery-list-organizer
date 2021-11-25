@@ -11,6 +11,7 @@
     "grocery-ionic-sync-ios": "nx run grocery-ionic:sync:ios",
     "grocery-ionic-open-ios": "nx run grocery-ionic:open:ios",
     "grocery-ionic-dev-ios": "ng build --project=grocery-ionic && npm run grocery-ionic-sync-ios && npm run grocery-ionic-open-ios",
+    "grocery-ionic-prod-ios": "ng build --project=grocery-ionic --prod && npm run grocery-ionic-sync-ios && npm run grocery-ionic-open-ios",
     "grocery-ionic-sync-android": "nx run grocery-ionic:sync:android",
     "grocery-ionic-open-android": "nx run grocery-ionic:open:android",
     "grocery-ionic-dev-android": "ng build --project=grocery-ionic && npm run grocery-ionic-sync-android && npm run grocery-ionic-open-android"
@@ -76,4 +77,3 @@
     "typescript": "4.4.4"
   }
 }
-
