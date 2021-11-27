@@ -35,9 +35,7 @@ export class IonicAppStateService
   constructor(
     protected headerDataService: IonicHeaderDataService,
     protected ionicStorageSvc: IonicStorageUtilService,
-    protected store: Store<AppState>,
-    private _router: Router,
-    private _navCtrl: NavController
+    protected store: Store<AppState>
   ) {
     super(headerDataService, ionicStorageSvc, store);
   }
@@ -67,7 +65,11 @@ export class IonicAppStateService
 
   addItemToList(addItemForm: FormGroup): void {
     super.addItemToList(addItemForm);
-    this._store.dispatch(SetHeader({headerData: this.INITIAL_STATE.headerData!}));
+    this._store.dispatch(GoBackToHome({headerData: this.INITIAL_STATE.headerData!}));
 
+  }
+  
+  handleCancelAddItemToList(): void {
+    this._store.dispatch(GoBackToHome({headerData: this.INITIAL_STATE.headerData!}));
   }
 }
