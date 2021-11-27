@@ -11,6 +11,7 @@ export const LOAD_ITEMS = '[APP] Load All Items to Store';
 export const OPEN_ITEM_DETAIL = '[APP] Open Item Detail';
 export const GO_BACK_TO_HOME = '[APP] Go Back to Home';
 export const OPEN_ADD_ITEM_LIST = '[APP] Open Add Item List';
+export const SWITCH_HOME_VIEW = '[APP] Switch Home View'
 
 export const SetHeader = createAction(
   SET_HEADER,
@@ -42,4 +43,8 @@ export const GoBackToHome = createAction(
 export const OpenAddItemList = createAction(
   OPEN_ADD_ITEM_LIST,
   props<{headerData: HeaderData}>()
+);
+
+export const SwitchHomeView = createAction(
+  SWITCH_HOME_VIEW
 );

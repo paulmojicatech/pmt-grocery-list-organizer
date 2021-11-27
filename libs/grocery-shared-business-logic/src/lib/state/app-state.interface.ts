@@ -1,6 +1,9 @@
+import { HomeViewType } from "./models/app.model";
+
 export interface AppState {
   allItems: GroceryItem[];
   headerData?: HeaderData;
+  currentHomeView: HomeViewType;
 }
 
 export enum HeaderType {

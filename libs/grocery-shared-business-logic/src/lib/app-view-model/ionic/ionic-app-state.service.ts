@@ -1,18 +1,14 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { addItemHeaderData, homeHeaderData, itemDetailHeaderData } from '../../header-data/header-data-actions/header-data-actions';
 import { IonicHeaderDataService } from '../../header-data/ionic/ionic-header-data.service';
-import { GoBackToHome, OpenAddItemList, OpenItemDetail, SetHeader } from '../../state/actions/app.actions';
+import { GoBackToHome, OpenAddItemList, OpenItemDetail, SwitchHomeView } from '../../state/actions/app.actions';
 import {
   AppState,
   GroceryItem,
   HeaderButton,
-  HeaderButtonPosition,
-  HeaderData,
   HeaderType,
 } from '../../state/app-state.interface';
 import { IonicStorageUtilService } from '../../storage/ionic/ionic-storage-util.service';
@@ -71,5 +67,16 @@ export class IonicAppStateService
   
   handleCancelAddItemToList(): void {
     this._store.dispatch(GoBackToHome({headerData: this.INITIAL_STATE.headerData!}));
+  }
+
+  handleSubtitleClick(subtitle: string): void {
+    switch (subtitle) {
+      case 'Switch To Things We Have':
+      case 'Switch To Things We Need':
+        this._store.dispatch(SwitchHomeView());
+        break;
+      default:
+        break;
+    }
   }
 }
