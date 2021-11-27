@@ -6,13 +6,15 @@ export interface AppState {
 export enum HeaderType {
   HOME_HEADER,
   ADD_ITEM_HEADER,
-  ITEM_DETAIL_HEADER
+  ITEM_DETAIL_HEADER,
+  THINGS_WE_NEED_HEADER
 }
 
 export interface HeaderData {
   title: string;
   buttons: HeaderButton[];
   buttonGroupPosition: HeaderButtonPosition;
+  subtitle?: string;
 }
 
 export interface HeaderButton {
