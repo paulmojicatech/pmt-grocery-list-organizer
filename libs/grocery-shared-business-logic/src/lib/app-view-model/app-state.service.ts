@@ -68,12 +68,14 @@ export abstract class AppStateService {
 
   addItemToList(addItemForm: FormGroup): void {
     const addToCurrentList = !!addItemForm.get('addToCurrentList')?.value;
-    const item = addItemForm.get('item')?.value;
+    const item = addItemForm.get('item')!.value;
+    const qty = addItemForm.get('qty')!.value ?? null;
     const itemCategory = addItemForm.get('itemCategory')?.value;
     const itemToAdd: GroceryItem = {
       id: addToCurrentList ? this.generateItemId() : undefined,
       name: item,
       category: itemCategory,
+      qty,
       datePurchased: addToCurrentList ? new Date().toDateString() : undefined,
     };
     this.storageSvc.addGroceryItem(itemToAdd);

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ThingsWeNeedPage } from './things-we-need.page';
 import { Route, RouterModule } from '@angular/router';
+import { IonicModule } from '@ionic/angular';
 
 const routes: Route[] = [
   {
@@ -17,7 +18,8 @@ const routes: Route[] = [
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    IonicModule
   ]
 })
 export class ThingsWeNeedModule { }

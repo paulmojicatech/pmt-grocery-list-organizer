@@ -9,6 +9,7 @@ export class AddItemFormService {
     return this._formBuilder.group({
       itemCategory: [null, Validators.required],
       item: [null, Validators.required],
+      qty: [null],
       addToCurrentList: [false],
     });
   }
