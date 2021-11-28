@@ -3,6 +3,7 @@ import {
   GroceryItem,
   HeaderData,
 } from '../app-state.interface';
+import { HomeViewType } from '../models/app.model';
 
 export const SET_HEADER = '[APP] Set Header';
 export const ADD_ITEM = '[APP] Add Item';
@@ -46,5 +47,6 @@ export const OpenAddItemList = createAction(
 );
 
 export const SwitchHomeView = createAction(
-  SWITCH_HOME_VIEW
+  SWITCH_HOME_VIEW,
+  props<{viewToSwitchTo: HomeViewType}>()
 );

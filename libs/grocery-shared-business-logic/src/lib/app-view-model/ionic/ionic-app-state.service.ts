@@ -11,6 +11,7 @@ import {
   HeaderButton,
   HeaderType,
 } from '../../state/app-state.interface';
+import { HomeViewType } from '../../state/models/app.model';
 import { IonicStorageUtilService } from '../../storage/ionic/ionic-storage-util.service';
 import { AppViewModel, IAppStateService } from '../app-state.interface';
 import { AppStateService } from '../app-state.service';
@@ -72,8 +73,10 @@ export class IonicAppStateService
   handleSubtitleClick(subtitle: string): void {
     switch (subtitle) {
       case 'Switch To Things We Have':
+        this.store.dispatch(SwitchHomeView({viewToSwitchTo: HomeViewType.THINGS_WE_HAVE}));
+        break;
       case 'Switch To Things We Need':
-        this._store.dispatch(SwitchHomeView());
+        this.store.dispatch(SwitchHomeView({viewToSwitchTo: HomeViewType.THINGS_WE_NEED}));
         break;
       default:
         break;

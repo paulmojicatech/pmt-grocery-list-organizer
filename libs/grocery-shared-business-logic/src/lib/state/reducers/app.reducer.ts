@@ -49,11 +49,11 @@ export const AppReducer = createReducer(
   on(LoadItems, (state, { allItems }) => ({ ...state, allItems })),
   on(
     SwitchHomeView,
-    state => {
+    (state, { viewToSwitchTo }) => {
       return {
         ...state,
-        headerData: state.currentHomeView === HomeViewType.THINGS_WE_HAVE ? thingsWeNeedHeaderData : homeHeaderData,
-        currentHomeView: state.currentHomeView === HomeViewType.THINGS_WE_HAVE ? HomeViewType.THINGS_WE_NEED : HomeViewType.THINGS_WE_HAVE
+        headerData: viewToSwitchTo === HomeViewType.THINGS_WE_HAVE ? homeHeaderData : thingsWeNeedHeaderData,
+        currentHomeView: viewToSwitchTo === HomeViewType.THINGS_WE_HAVE ? HomeViewType.THINGS_WE_HAVE : HomeViewType.THINGS_WE_NEED
       };
     }
   )
