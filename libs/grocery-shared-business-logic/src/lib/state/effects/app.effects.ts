@@ -2,7 +2,8 @@ import { Injectable } from "@angular/core";
 import { NavController } from "@ionic/angular";
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, tap } from "rxjs/operators";
-import { GoBackToHome, OpenAddItemList, OpenItemDetail, SetHeader } from "../actions/app.actions";
+import { GoBackToHome, OpenAddItemList, OpenItemDetail, SetHeader, SwitchHomeView } from "../actions/app.actions";
+import { HomeViewType } from "../models/app.model";
 
 @Injectable()
 export class AppEffects {
@@ -39,5 +40,18 @@ export class AppEffects {
         ofType(OpenAddItemList),
         map(action => SetHeader({headerData: action.headerData}))
     ));
+
+    switchViewRoute$ = createEffect(
+        () => this._actions$.pipe(
+            ofType(SwitchHomeView),
+            tap(action => {
+                if (action.viewToSwitchTo === HomeViewType.THINGS_WE_HAVE) {
+                    this._navCtrl.navigateForward(['']);
+                } else {
+                    this._navCtrl.navigateForward(['things-we-need']);
+                }
+            })
+        ), { dispatch: false }
+    );
 
 }
