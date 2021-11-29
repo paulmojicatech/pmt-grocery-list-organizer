@@ -1,15 +1,19 @@
-import { createReducer, on, State } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
+import { homeHeaderData, thingsWeNeedHeaderData } from '../../header-data/header-data-actions/header-data-actions';
 import {
   AddItem,
   AddItemToCurrentList,
   LoadItems,
   SetHeader,
+  SwitchHomeView,
 } from '../actions/app.actions';
 import { AppState } from '../app-state.interface';
+import { HomeViewType } from '../models/app.model';
 
 const INITIAL_STATE: AppState = {
   headerData: undefined,
   allItems: [],
+  currentHomeView: HomeViewType.THINGS_WE_HAVE
 };
 
 export const AppReducer = createReducer(
@@ -42,5 +46,15 @@ export const AppReducer = createReducer(
       };
     }
   }),
-  on(LoadItems, (state, { allItems }) => ({ ...state, allItems }))
+  on(LoadItems, (state, { allItems }) => ({ ...state, allItems })),
+  on(
+    SwitchHomeView,
+    (state, { viewToSwitchTo }) => {
+      return {
+        ...state,
+        headerData: viewToSwitchTo === HomeViewType.THINGS_WE_HAVE ? homeHeaderData : thingsWeNeedHeaderData,
+        currentHomeView: viewToSwitchTo === HomeViewType.THINGS_WE_HAVE ? HomeViewType.THINGS_WE_HAVE : HomeViewType.THINGS_WE_NEED
+      };
+    }
+  )
 );

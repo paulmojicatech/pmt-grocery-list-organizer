@@ -10,6 +10,9 @@
         </ion-button>
       </ion-buttons>
     </ion-toolbar>
+    <div class="header-subtitle-container">
+      <span (click)="appStateSvc.handleSubtitleClick(viewModel.headerData?.subtitle!)" *ngIf="!!viewModel.headerData?.subtitle">{{viewModel.headerData!.subtitle}}</span>
+    </div>
   </ion-header>
   <ion-content>
     <ion-router-outlet></ion-router-outlet>

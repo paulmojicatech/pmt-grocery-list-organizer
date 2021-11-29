@@ -1,5 +1,5 @@
 {
-  "name": "grocery-ionic",
+  "name": "Grocery List Organizer",
   "integrations": {
     "capacitor": {}
   },

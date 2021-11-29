@@ -1,18 +1,23 @@
+import { HomeViewType } from "./models/app.model";
+
 export interface AppState {
   allItems: GroceryItem[];
   headerData?: HeaderData;
+  currentHomeView: HomeViewType;
 }
 
 export enum HeaderType {
   HOME_HEADER,
   ADD_ITEM_HEADER,
-  ITEM_DETAIL_HEADER
+  ITEM_DETAIL_HEADER,
+  THINGS_WE_NEED_HEADER
 }
 
 export interface HeaderData {
   title: string;
   buttons: HeaderButton[];
   buttonGroupPosition: HeaderButtonPosition;
+  subtitle?: string;
 }
 
 export interface HeaderButton {
@@ -31,6 +36,7 @@ export enum HeaderButtonPosition {
 export interface GroceryItem {
   id?: string;
   datePurchased?: string;
+  qty?: number;
   name: string;
   category: GroceryItemCategoryType;
 }
