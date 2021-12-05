@@ -1,7 +1,7 @@
 <ion-content *ngIf="items$ | async as items">
     <ion-list>
         <ion-item *ngFor="let item of items">
-            <ion-checkbox slot="start"></ion-checkbox>
+            <ion-checkbox (click)="handleMarkItemAsPurchased(item.name)" slot="start"></ion-checkbox>
             <ion-label>{{item.name}}</ion-label>
             <ion-label slot="end">Qty: {{item.qty}}</ion-label>
         </ion-item>

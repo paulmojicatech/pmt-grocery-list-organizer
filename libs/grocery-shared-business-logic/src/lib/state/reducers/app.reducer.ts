@@ -3,6 +3,7 @@ import { homeHeaderData, thingsWeNeedHeaderData } from '../../header-data/header
 import {
   AddItem,
   AddItemToCurrentList,
+  ItemPurchased,
   LoadItems,
   SetHeader,
   SwitchHomeView,

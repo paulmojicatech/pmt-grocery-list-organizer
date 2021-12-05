@@ -19,9 +19,13 @@ export class ThingsWeNeedPage implements OnInit {
   ngOnInit(): void {
     this.items$ = this._appViewModelSvc.getViewModel().pipe(
       map(viewModel => {
-        return viewModel.items.filter(item => !!item.qty)
+        return viewModel.items.filter(item => !!item.qty && !item.id)
       })
     );
+  }
+
+  handleMarkItemAsPurchased(itemName: string): void {
+    this._appViewModelSvc.handleMarkItemWeNeedToCurrentList(itemName);
   }
 
 }

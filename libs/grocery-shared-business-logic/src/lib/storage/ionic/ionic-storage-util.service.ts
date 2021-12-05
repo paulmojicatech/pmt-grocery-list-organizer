@@ -47,4 +47,19 @@ export class IonicStorageUtilService implements OnInit, IStorageUtilSvc {
       JSON.stringify([...currentItems, value])
     );
   }
+
+  async updateCurrentGroceryItem(value: GroceryItem): Promise<void> {
+    const stringifiedCurrentItems = await this._storage.get(
+      StorageType.GROCERY_ITEM
+    )!;
+    const currentItems: GroceryItem[] = !!stringifiedCurrentItems
+      ? JSON.parse([...stringifiedCurrentItems].join(''))
+      : [];
+    const currentIndex = currentItems.findIndex(item => item.name === value.name);
+    currentItems[currentIndex] = value;
+    await this._storage.set(
+      StorageType.GROCERY_ITEM,
+      JSON.stringify(currentItems)
+    );
+  }
 }

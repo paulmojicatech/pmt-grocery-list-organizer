@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { addItemHeaderData, homeHeaderData, itemDetailHeaderData } from '../../header-data/header-data-actions/header-data-actions';
 import { IonicHeaderDataService } from '../../header-data/ionic/ionic-header-data.service';
-import { GoBackToHome, OpenAddItemList, OpenItemDetail, SwitchHomeView } from '../../state/actions/app.actions';
+import { AddItemToCurrentList, GoBackToHome, OpenAddItemList, OpenItemDetail, SwitchHomeView } from '../../state/actions/app.actions';
 import {
   AppState,
   GroceryItem,
@@ -81,5 +81,12 @@ export class IonicAppStateService
       default:
         break;
     }
+  }
+
+  handleMarkItemWeNeedToCurrentList(itemName: string): void {
+    const currentItems = this.viewModelSub$.getValue();
+    let updatedItem = currentItems.items.find(item => item.name === itemName)!;
+    updatedItem = {...updatedItem, id: this.generateItemId(), datePurchased: new Date().toDateString()};
+    this._store.dispatch(AddItemToCurrentList({itemToAdd: updatedItem}));
   }
 }
