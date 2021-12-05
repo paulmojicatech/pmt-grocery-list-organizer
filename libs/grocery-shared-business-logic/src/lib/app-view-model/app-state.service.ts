@@ -10,7 +10,7 @@ import {
 } from 'rxjs/operators';
 import { IHeaderDataService } from '../header-data/header-data-service.interface';
 import { getAllItems } from '../state';
-import { LoadItems } from '../state/actions/app.actions';
+import { AddItem, LoadItems } from '../state/actions/app.actions';
 import {
   AppState,
   GroceryItem,
@@ -78,7 +78,7 @@ export abstract class AppStateService {
       qty,
       datePurchased: addToCurrentList ? new Date().toDateString() : undefined,
     };
-    this.storageSvc.addGroceryItem(itemToAdd);
+    this._store.dispatch(AddItem({item: itemToAdd}));
   }
 
   private generateItemId(): string {

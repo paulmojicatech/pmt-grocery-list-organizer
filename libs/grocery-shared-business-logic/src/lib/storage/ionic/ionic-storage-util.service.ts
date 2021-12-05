@@ -46,6 +46,5 @@ export class IonicStorageUtilService implements OnInit, IStorageUtilSvc {
       StorageType.GROCERY_ITEM,
       JSON.stringify([...currentItems, value])
     );
-    this._store.dispatch(LoadItems({ allItems: [...currentItems, value] }));
   }
 }
