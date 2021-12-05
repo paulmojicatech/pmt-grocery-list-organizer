@@ -10,7 +10,7 @@ import {
 } from 'rxjs/operators';
 import { IHeaderDataService } from '../header-data/header-data-service.interface';
 import { getAllItems } from '../state';
-import { LoadItems } from '../state/actions/app.actions';
+import { AddItem, LoadItems } from '../state/actions/app.actions';
 import {
   AppState,
   GroceryItem,
@@ -50,20 +50,28 @@ export abstract class AppStateService {
       );
     const headerData$ = this.headerDataService
       .getHeaderData(defaultHeaderData)
-      .pipe(filter((headerData) => !!headerData));
-    let itemCategories: string[] = Object.values(GroceryItemCategoryType);
-    const itemCategories$ = of(itemCategories);
-    const allItems$ = this._store.select(getAllItems);
-    const initialViewModel$ = combineLatest([
-      headerData$,
-      itemCategories$,
-      allItems$,
-    ]).pipe(
-      map(([headerData, itemCategories, items]) => {
-        return { headerData, itemCategories, items };
-      })
+      .pipe(
+        filter((headerData) => !!headerData),
+        tap(headerData => {
+          this.viewModelSub$.next({
+            ...this.viewModelSub$.getValue(),
+            headerData
+          });
+        }),
+        ignoreElements()
+      );
+    const allItems$ = this._store.select(getAllItems).pipe(
+      tap(items => {
+        let itemCategories: string[] = Object.values(GroceryItemCategoryType);
+          this.viewModelSub$.next({
+            ...this.viewModelSub$.getValue(),
+            items,
+            itemCategories
+          })
+      }),
+      ignoreElements()
     );
-    return merge(initialViewModel$, this.viewModel$, loadGroceryItems$);
+    return merge(this.viewModel$, loadGroceryItems$, allItems$, headerData$);
   }
 
   addItemToList(addItemForm: FormGroup): void {
@@ -78,10 +86,10 @@ export abstract class AppStateService {
       qty,
       datePurchased: addToCurrentList ? new Date().toDateString() : undefined,
     };
-    this.storageSvc.addGroceryItem(itemToAdd);
+    this._store.dispatch(AddItem({item: itemToAdd}));
   }
 
-  private generateItemId(): string {
+  protected generateItemId(): string {
     return Math.random().toString(16).substr(2, 16);
   }
 }
