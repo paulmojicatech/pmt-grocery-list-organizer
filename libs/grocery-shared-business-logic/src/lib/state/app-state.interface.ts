@@ -48,4 +48,8 @@ export enum GroceryItemCategoryType {
   VEGETABLES = 'Vegetables',
   SNACKS = 'Snacks',
   DESSERTS = ' Desserts',
+  HOUSEHOLD = 'Household',
+  BREAKFAST = 'Breakfast',
+  DAIRY = 'Dairy',
+  FISH = 'Fish'
 }
