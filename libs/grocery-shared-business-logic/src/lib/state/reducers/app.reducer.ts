@@ -5,6 +5,7 @@ import {
   AddItemToCurrentList,
   ItemPurchased,
   LoadItems,
+  MarkItemUsedSuccess,
   SetHeader,
   SwitchHomeView,
 } from '../actions/app.actions';
@@ -57,5 +58,9 @@ export const AppReducer = createReducer(
         currentHomeView: viewToSwitchTo === HomeViewType.THINGS_WE_HAVE ? HomeViewType.THINGS_WE_HAVE : HomeViewType.THINGS_WE_NEED
       };
     }
+  ),
+  on(
+    MarkItemUsedSuccess,
+    (state, { updatedItems}) => ({...state, allItems: updatedItems})
   )
 );

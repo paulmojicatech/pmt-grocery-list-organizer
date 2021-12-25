@@ -39,9 +39,6 @@ export class IonicAppStateService
   }
 
   getViewModel(): Observable<AppViewModel> {
-    from(this.storageSvc.getStorageItem(StorageType.ARCHIVED_GROCERY_ITEM)).subscribe(archivedItems => {
-      console.log('ARCHIVED ITEMS', archivedItems);
-    })
     return super.getViewModel(this.INITIAL_STATE.headerData!);
   }
 

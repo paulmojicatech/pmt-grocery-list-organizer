@@ -36,6 +36,10 @@ export class IonicStorageUtilService implements OnInit, IStorageUtilSvc {
     );
   }
 
+  setStorageItem(key: StorageType, value: string): void {
+    this._storage.set(key, value);
+  }
+
   async addGroceryItem(value: GroceryItem): Promise<void> {
     const stringifiedCurrentItems = await this._storage.get(
       StorageType.GROCERY_ITEM
