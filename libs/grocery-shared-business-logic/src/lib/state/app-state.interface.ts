@@ -34,11 +34,13 @@ export enum HeaderButtonPosition {
 }
 
 export interface GroceryItem {
+  name: string;
+  category?: GroceryItemCategoryType;
   id?: string;
   datePurchased?: string;
   qty?: number;
-  name: string;
-  category: GroceryItemCategoryType;
+  dateUsed?: string;
+  dateDeleted?: string;
 }
 
 

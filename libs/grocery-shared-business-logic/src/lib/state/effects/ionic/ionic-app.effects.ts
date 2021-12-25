@@ -60,7 +60,7 @@ export class IonicAppEffects extends AppEffects {
     markItemAsUsed$ = createEffect(
         () => this._actions$.pipe(
             ofType(MarkItemUsed),
-            tap(action => this._ionicStorageSvc.archiveUsedItem(action.itemId)),
+            tap(action => this._ionicStorageSvc.archiveUsedItem(action.itemId, false)),
             switchMap(action => from(this._ionicStorageSvc.getStorageItem(StorageType.GROCERY_ITEM)).pipe(
                 map(currentItems => {
                     const updatedItems = [...currentItems];

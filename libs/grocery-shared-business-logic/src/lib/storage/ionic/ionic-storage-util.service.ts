@@ -68,13 +68,15 @@ export class IonicStorageUtilService implements OnInit, IStorageUtilSvc {
     );
   }
 
-  archiveUsedItem(itemId: string): void {
+  archiveUsedItem(itemId: string, isDeleted: boolean): void {
     this._store.select(getAllItems).pipe(
       filter(items => !!items.length),
       map(items => items.find(item => item.id === itemId)),
+      filter(itemToArchive => !!itemToArchive),
       switchMap(itemToArchive => from(this._storage.get((StorageType.ARCHIVED_GROCERY_ITEM))).pipe(
         tap(archivedItems => {
-          const updatedItems = !!archivedItems ? [...JSON.parse(archivedItems), itemToArchive] : [itemToArchive];
+          const updatedItemToArchive = isDeleted ? {...itemToArchive, dateDeleted: new Date().toDateString()} : {...itemToArchive, dateUsed: new Date().toDateString()};
+          const updatedItems = !!archivedItems ? [...JSON.parse(archivedItems), updatedItemToArchive] : [updatedItemToArchive];
           this._storage.set(StorageType.ARCHIVED_GROCERY_ITEM, JSON.stringify(updatedItems));
         })
       )),
