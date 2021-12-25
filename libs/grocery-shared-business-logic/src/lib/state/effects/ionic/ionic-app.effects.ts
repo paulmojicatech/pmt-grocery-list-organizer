@@ -5,7 +5,7 @@ import { from } from "rxjs";
 import { map, switchMap, tap } from "rxjs/operators";
 import { IonicStorageUtilService } from "../../../storage/ionic/ionic-storage-util.service";
 import { StorageType } from "../../../storage/models/storage.interface";
-import { AddItem, AddItemToCurrentList, GoBackToHome, MarkItemUsed, MarkItemUsedSuccess, OpenAddItemList, OpenItemDetail, SwitchHomeView } from "../../actions/app.actions";
+import { AddItem, AddItemToCurrentList, GoBackToHome, MarkItemAsThrownAway, MarkItemUsed, MarkItemUsedSuccess, OpenAddItemList, OpenItemDetail, SwitchHomeView } from "../../actions/app.actions";
 import { HomeViewType } from "../../models/app.model";
 import { AppEffects } from "../app.effects";
 
@@ -60,7 +60,7 @@ export class IonicAppEffects extends AppEffects {
     markItemAsUsed$ = createEffect(
         () => this._actions$.pipe(
             ofType(MarkItemUsed),
-            tap(action => this._ionicStorageSvc.archiveUsedItem(action.itemId)),
+            tap(action => this._ionicStorageSvc.archiveUsedItem(action.itemId, false)),
             switchMap(action => from(this._ionicStorageSvc.getStorageItem(StorageType.GROCERY_ITEM)).pipe(
                 map(currentItems => {
                     const updatedItems = [...currentItems];
@@ -81,4 +81,20 @@ export class IonicAppEffects extends AppEffects {
             })
         ), { dispatch: false }
     );
+
+    markItemAsThrownAway$ = createEffect(
+        () => this._actions$.pipe(
+            ofType(MarkItemAsThrownAway),
+            tap(action => this._ionicStorageSvc.archiveUsedItem(action.itemId, true)),
+            switchMap(action => from(this._ionicStorageSvc.getStorageItem(StorageType.GROCERY_ITEM)).pipe(
+                map(currentItems => {
+                    const updatedItems = [...currentItems];
+                    const itemIndex = updatedItems.findIndex(item => item.id === action.itemId);
+                    updatedItems[itemIndex] = {...updatedItems[itemIndex], id: undefined, datePurchased: undefined};
+                    return MarkItemUsedSuccess({updatedItems});
+                })
+            ))
+        )
+    );
+
 }

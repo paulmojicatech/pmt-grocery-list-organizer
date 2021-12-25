@@ -1,9 +1,11 @@
 import { createReducer, on } from '@ngrx/store';
-import { homeHeaderData, thingsWeNeedHeaderData } from '../../header-data/header-data-actions/header-data-actions';
+import {
+  homeHeaderData,
+  thingsWeNeedHeaderData,
+} from '../../header-data/header-data-actions/header-data-actions';
 import {
   AddItem,
   AddItemToCurrentList,
-  ItemPurchased,
   LoadItems,
   MarkItemUsedSuccess,
   SetHeader,
@@ -15,7 +17,7 @@ import { HomeViewType } from '../models/app.model';
 const INITIAL_STATE: AppState = {
   headerData: undefined,
   allItems: [],
-  currentHomeView: HomeViewType.THINGS_WE_HAVE
+  currentHomeView: HomeViewType.THINGS_WE_HAVE,
 };
 
 export const AppReducer = createReducer(
@@ -30,9 +32,7 @@ export const AppReducer = createReducer(
       (item) => item?.id === itemToAdd.id
     );
     if (itemIndex === -1) {
-      const sortedItems =
-        state.allItems
-          .filter((item) => !!item?.id)
+      const sortedItems = state.allItems.filter((item) => !!item?.id);
       const newId = sortedItems[0].id;
       const itemWithId = { ...itemToAdd, id: newId };
       return {
@@ -49,18 +49,21 @@ export const AppReducer = createReducer(
     }
   }),
   on(LoadItems, (state, { allItems }) => ({ ...state, allItems })),
-  on(
-    SwitchHomeView,
-    (state, { viewToSwitchTo }) => {
-      return {
-        ...state,
-        headerData: viewToSwitchTo === HomeViewType.THINGS_WE_HAVE ? homeHeaderData : thingsWeNeedHeaderData,
-        currentHomeView: viewToSwitchTo === HomeViewType.THINGS_WE_HAVE ? HomeViewType.THINGS_WE_HAVE : HomeViewType.THINGS_WE_NEED
-      };
-    }
-  ),
-  on(
-    MarkItemUsedSuccess,
-    (state, { updatedItems}) => ({...state, allItems: updatedItems})
-  )
+  on(SwitchHomeView, (state, { viewToSwitchTo }) => {
+    return {
+      ...state,
+      headerData:
+        viewToSwitchTo === HomeViewType.THINGS_WE_HAVE
+          ? homeHeaderData
+          : thingsWeNeedHeaderData,
+      currentHomeView:
+        viewToSwitchTo === HomeViewType.THINGS_WE_HAVE
+          ? HomeViewType.THINGS_WE_HAVE
+          : HomeViewType.THINGS_WE_NEED,
+    };
+  }),
+  on(MarkItemUsedSuccess, (state, { updatedItems }) => ({
+    ...state,
+    allItems: updatedItems,
+  }))
 );
