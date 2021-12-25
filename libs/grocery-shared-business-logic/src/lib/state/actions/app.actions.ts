@@ -13,7 +13,8 @@ export const OPEN_ITEM_DETAIL = '[APP] Open Item Detail';
 export const GO_BACK_TO_HOME = '[APP] Go Back to Home';
 export const OPEN_ADD_ITEM_LIST = '[APP] Open Add Item List';
 export const SWITCH_HOME_VIEW = '[APP] Switch Home View';
-export const ITEM_PURCHASED = '[APP] Mark Item Needed to Item Purchased'
+export const ITEM_PURCHASED = '[APP] Mark Item Needed to Item Purchased';
+export const MARK_ITEM_USED = '[APP] Mark Item as Used';
 
 export const SetHeader = createAction(
   SET_HEADER,
@@ -55,4 +56,9 @@ export const SwitchHomeView = createAction(
 export const ItemPurchased = createAction(
   ITEM_PURCHASED,
   props<{item: GroceryItem}>()
+);
+
+export const MarkItemUsed = createAction(
+  MARK_ITEM_USED,
+  props<{itemId: string}>()
 );

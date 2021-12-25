@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { addItemHeaderData, homeHeaderData, itemDetailHeaderData } from '../../header-data/header-data-actions/header-data-actions';
 import { IonicHeaderDataService } from '../../header-data/ionic/ionic-header-data.service';
-import { AddItemToCurrentList, GoBackToHome, OpenAddItemList, OpenItemDetail, SwitchHomeView } from '../../state/actions/app.actions';
+import { AddItemToCurrentList, GoBackToHome, MarkItemUsed, OpenAddItemList, OpenItemDetail, SwitchHomeView } from '../../state/actions/app.actions';
 import {
   AppState,
   GroceryItem,
@@ -13,6 +13,7 @@ import {
 } from '../../state/app-state.interface';
 import { HomeViewType } from '../../state/models/app.model';
 import { IonicStorageUtilService } from '../../storage/ionic/ionic-storage-util.service';
+import { StorageType } from '../../storage/models/storage.interface';
 import { AppViewModel, IAppStateService } from '../app-state.interface';
 import { AppStateService } from '../app-state.service';
 
@@ -38,6 +39,9 @@ export class IonicAppStateService
   }
 
   getViewModel(): Observable<AppViewModel> {
+    from(this.storageSvc.getStorageItem(StorageType.ARCHIVED_GROCERY_ITEM)).subscribe(archivedItems => {
+      console.log('ARCHIVED ITEMS', archivedItems);
+    })
     return super.getViewModel(this.INITIAL_STATE.headerData!);
   }
 
@@ -88,5 +92,9 @@ export class IonicAppStateService
     let updatedItem = currentItems.items.find(item => item.name === itemName)!;
     updatedItem = {...updatedItem, id: this.generateItemId(), datePurchased: new Date().toDateString()};
     this._store.dispatch(AddItemToCurrentList({itemToAdd: updatedItem}));
+  }
+
+  handleMarkItemAsComplete(itemId: string): void {
+    this._store.dispatch(MarkItemUsed({itemId}));
   }
 }

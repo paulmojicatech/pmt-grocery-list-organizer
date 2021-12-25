@@ -3,7 +3,7 @@ import { NavController } from "@ionic/angular";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { tap } from "rxjs/operators";
 import { IonicStorageUtilService } from "../../../storage/ionic/ionic-storage-util.service";
-import { AddItem, AddItemToCurrentList, GoBackToHome, ItemPurchased, OpenAddItemList, OpenItemDetail, SwitchHomeView } from "../../actions/app.actions";
+import { AddItem, AddItemToCurrentList, GoBackToHome, MarkItemUsed, OpenAddItemList, OpenItemDetail, SwitchHomeView } from "../../actions/app.actions";
 import { HomeViewType } from "../../models/app.model";
 import { AppEffects } from "../app.effects";
 
@@ -48,10 +48,19 @@ export class IonicAppEffects extends AppEffects {
         ), { dispatch: false }
     );
     
-    updateMarkedPurchasedItemToStorage = createEffect(
+    updateMarkedPurchasedItemToStorage$ = createEffect(
         () => this._actions$.pipe(
             ofType(AddItemToCurrentList),
             tap(action => this._ionicStorageSvc.updateCurrentGroceryItem(action.itemToAdd))
+        ), { dispatch: false }
+    );
+
+    markItemAsUsedMoveToArchive$ = createEffect(
+        () => this._actions$.pipe(
+            ofType(MarkItemUsed),
+            tap(action => {
+                this._ionicStorageSvc.archiveUsedItem(action.itemId);
+            })
         ), { dispatch: false }
     );
 }
