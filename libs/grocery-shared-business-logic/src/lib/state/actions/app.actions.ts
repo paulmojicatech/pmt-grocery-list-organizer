@@ -1,8 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import {
-  GroceryItem,
-  HeaderData,
-} from '../app-state.interface';
+import { GroceryItem, HeaderData } from '../app-state.interface';
 import { HomeViewType } from '../models/app.model';
 
 export const SET_HEADER = '[APP] Set Header';
@@ -16,6 +13,7 @@ export const SWITCH_HOME_VIEW = '[APP] Switch Home View';
 export const ITEM_PURCHASED = '[APP] Mark Item Needed to Item Purchased';
 export const MARK_ITEM_USED = '[APP] Mark Item as Used';
 export const MARK_ITEM_USED_SUCCESS = '[APP] Mark Item as Used Success';
+export const MARK_ITEM_AS_THROWN_AWAY = '[App] Mark Item as Thrown Away';
 
 export const SetHeader = createAction(
   SET_HEADER,
@@ -36,35 +34,41 @@ export const LoadItems = createAction(
 
 export const OpenItemDetail = createAction(
   OPEN_ITEM_DETAIL,
-  props<{item: GroceryItem; headerData: HeaderData }>()
-)
+  props<{ item: GroceryItem; headerData: HeaderData }>()
+);
 
 export const GoBackToHome = createAction(
   GO_BACK_TO_HOME,
-  props<{headerData: HeaderData }>()
+  props<{ headerData: HeaderData }>()
 );
 
 export const OpenAddItemList = createAction(
   OPEN_ADD_ITEM_LIST,
-  props<{headerData: HeaderData}>()
+  props<{ headerData: HeaderData }>()
 );
 
 export const SwitchHomeView = createAction(
   SWITCH_HOME_VIEW,
-  props<{viewToSwitchTo: HomeViewType}>()
+  props<{ viewToSwitchTo: HomeViewType }>()
 );
 
 export const ItemPurchased = createAction(
   ITEM_PURCHASED,
-  props<{item: GroceryItem}>()
+  props<{ item: GroceryItem }>()
 );
 
 export const MarkItemUsed = createAction(
   MARK_ITEM_USED,
-  props<{itemId: string}>()
+  props<{ itemId: string }>()
 );
 
 export const MarkItemUsedSuccess = createAction(
   MARK_ITEM_USED_SUCCESS,
-  props<{updatedItems: GroceryItem[]}>()
-)
+  props<{ updatedItems: GroceryItem[] }>()
+);
+
+export const MarkItemAsThrownAway = createAction(
+  MARK_ITEM_AS_THROWN_AWAY,
+  props<{ itemId: string }>()
+);
+
