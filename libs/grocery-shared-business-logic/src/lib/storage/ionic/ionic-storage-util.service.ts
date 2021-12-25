@@ -8,7 +8,8 @@ import { StorageType } from '../models/storage.interface';
 import { AppState, GroceryItem } from '../../state/app-state.interface';
 import { Store } from '@ngrx/store';
 import { LoadItems } from '../../state/actions/app.actions';
-import { last, map, takeLast } from 'rxjs/operators';
+import { filter, last, map, switchMap, take, takeLast, tap } from 'rxjs/operators';
+import { getAllItems } from '../../state';
 
 @Injectable({
   providedIn: 'root',
@@ -33,6 +34,10 @@ export class IonicStorageUtilService implements OnInit, IStorageUtilSvc {
         }
       })
     );
+  }
+
+  setStorageItem(key: StorageType, value: string): void {
+    this._storage.set(key, value);
   }
 
   async addGroceryItem(value: GroceryItem): Promise<void> {
@@ -62,4 +67,19 @@ export class IonicStorageUtilService implements OnInit, IStorageUtilSvc {
       JSON.stringify(currentItems)
     );
   }
+
+  archiveUsedItem(itemId: string): void {
+    this._store.select(getAllItems).pipe(
+      filter(items => !!items.length),
+      map(items => items.find(item => item.id === itemId)),
+      switchMap(itemToArchive => from(this._storage.get((StorageType.ARCHIVED_GROCERY_ITEM))).pipe(
+        tap(archivedItems => {
+          const updatedItems = !!archivedItems ? [...JSON.parse(archivedItems), itemToArchive] : [itemToArchive];
+          this._storage.set(StorageType.ARCHIVED_GROCERY_ITEM, JSON.stringify(updatedItems));
+        })
+      )),
+      take(1)
+    ).subscribe();
+  }
+
 }
