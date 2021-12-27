@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { from, Observable } from 'rxjs';
 import { addItemHeaderData, homeHeaderData, itemDetailHeaderData } from '../../header-data/header-data-actions/header-data-actions';
 import { IonicHeaderDataService } from '../../header-data/ionic/ionic-header-data.service';
-import { AddItemToCurrentList, GoBackToHome, MarkItemAsThrownAway, MarkItemUsed, OpenAddItemList, OpenItemDetail, SwitchHomeView } from '../../state/actions/app.actions';
+import { AddItemToCurrentList, DecrementItemQty, GoBackToHome, MarkItemAsThrownAway, MarkItemUsed, OpenAddItemList, OpenItemDetail, SwitchHomeView } from '../../state/actions/app.actions';
 import {
   AppState,
   GroceryItem,
@@ -97,5 +97,9 @@ export class IonicAppStateService
 
   handleMarkItemAsDeleted(itemId: string): void {
     this._store.dispatch(MarkItemAsThrownAway({itemId}));
+  }
+
+  handleDecrementItemQty(item: GroceryItem): void {
+    this._store.dispatch(DecrementItemQty({item}));
   }
 }

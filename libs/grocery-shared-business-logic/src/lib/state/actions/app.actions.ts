@@ -14,6 +14,9 @@ export const ITEM_PURCHASED = '[APP] Mark Item Needed to Item Purchased';
 export const MARK_ITEM_USED = '[APP] Mark Item as Used';
 export const MARK_ITEM_USED_SUCCESS = '[APP] Mark Item as Used Success';
 export const MARK_ITEM_AS_THROWN_AWAY = '[App] Mark Item as Thrown Away';
+export const DECREMENT_ITEM_QTY = '[App] Decrement Item Qty';
+export const DECREMENT_ITEM_QTY_SUCCESS = '[App] Decrement Item Qty Successs';
+
 
 export const SetHeader = createAction(
   SET_HEADER,
@@ -70,5 +73,15 @@ export const MarkItemUsedSuccess = createAction(
 export const MarkItemAsThrownAway = createAction(
   MARK_ITEM_AS_THROWN_AWAY,
   props<{ itemId: string }>()
+);
+
+export const DecrementItemQty = createAction(
+  DECREMENT_ITEM_QTY,
+  props<{item: GroceryItem}>()
+);
+
+export const DecrementItemQtySuccess = createAction(
+  DECREMENT_ITEM_QTY_SUCCESS,
+  props<{updatedItems: GroceryItem[], updatedItem: GroceryItem}>()
 );
 

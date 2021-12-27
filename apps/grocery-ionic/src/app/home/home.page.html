@@ -9,7 +9,7 @@
                     <ion-icon name="checkmark"></ion-icon>
                 </ion-item-option>
                 <ion-item-option *ngIf="item.qty! > 1" color="primary">
-                    <ion-icon name="remove"></ion-icon>
+                    <ion-icon name="remove" (click)="stateSvc.handleDecrementItemQty(item)"></ion-icon>
                 </ion-item-option>
                 <ion-item-option>
                     <ion-icon name="add"></ion-icon>
