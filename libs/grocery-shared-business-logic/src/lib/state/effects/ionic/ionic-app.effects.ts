@@ -5,7 +5,7 @@ import { from } from "rxjs";
 import { map, switchMap, tap } from "rxjs/operators";
 import { IonicStorageUtilService } from "../../../storage/ionic/ionic-storage-util.service";
 import { StorageType } from "../../../storage/models/storage.interface";
-import { AddItem, AddItemToCurrentList, GoBackToHome, MarkItemAsThrownAway, MarkItemUsed, MarkItemUsedSuccess, OpenAddItemList, OpenItemDetail, SwitchHomeView } from "../../actions/app.actions";
+import { AddItem, AddItemToCurrentList, DecrementItemQty, DecrementItemQtySuccess, GoBackToHome, MarkItemAsThrownAway, MarkItemUsed, MarkItemUsedSuccess, OpenAddItemList, OpenItemDetail, SwitchHomeView } from "../../actions/app.actions";
 import { HomeViewType } from "../../models/app.model";
 import { AppEffects } from "../app.effects";
 
@@ -96,5 +96,29 @@ export class IonicAppEffects extends AppEffects {
             ))
         )
     );
+
+    decrementItemQty$ = createEffect(
+        () => this._actions$.pipe(
+            ofType(DecrementItemQty),
+            switchMap(action => from(this._ionicStorageSvc.getStorageItem(StorageType.GROCERY_ITEM)).pipe(
+                map(items => {
+                    const updatedItems = [...items];
+                    const itemIndex = updatedItems.findIndex(item => item.id === action.item.id);
+                    let updatedItem = updatedItems[itemIndex];
+                    updatedItem = {...updatedItems[itemIndex], qty: updatedItem.qty! - 1};
+                    return DecrementItemQtySuccess({updatedItems, updatedItem });
+                })
+            ))
+        )
+    );
+
+    decrementItemQtyUpdateStorage$ = createEffect(
+        () => this._actions$.pipe(
+            ofType(DecrementItemQtySuccess),
+            tap(action => {
+                this._ionicStorageSvc.updateCurrentGroceryItem(action.updatedItem);
+            }),
+        ), {dispatch: false}
+    )
 
 }

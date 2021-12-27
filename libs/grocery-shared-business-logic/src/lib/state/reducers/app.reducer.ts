@@ -6,6 +6,8 @@ import {
 import {
   AddItem,
   AddItemToCurrentList,
+  DecrementItemQty,
+  DecrementItemQtySuccess,
   LoadItems,
   MarkItemUsedSuccess,
   SetHeader,
@@ -64,6 +66,10 @@ export const AppReducer = createReducer(
   }),
   on(MarkItemUsedSuccess, (state, { updatedItems }) => ({
     ...state,
-    allItems: updatedItems,
-  }))
+    allItems: updatedItems
+  })),
+  on(
+    DecrementItemQtySuccess,
+    (state, { updatedItems }) => ({...state, allItems: updatedItems})
+  )
 );
