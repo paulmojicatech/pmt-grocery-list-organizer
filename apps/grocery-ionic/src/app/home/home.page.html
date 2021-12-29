@@ -11,9 +11,6 @@
                 <ion-item-option *ngIf="item.qty! > 1" color="primary">
                     <ion-icon name="remove" (click)="stateSvc.handleDecrementItemQty(item)"></ion-icon>
                 </ion-item-option>
-                <ion-item-option>
-                    <ion-icon name="add"></ion-icon>
-                </ion-item-option>
             </ion-item-options>
             <ion-item-options side="end">
                 <ion-item-option (click)="stateSvc.handleMarkItemAsDeleted(item.id!)" color="danger">
